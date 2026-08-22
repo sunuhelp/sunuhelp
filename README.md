@@ -1,16 +1,38 @@
-## Hi there 👋
+# SunuHelp
 
-<!--
-**sunuhelp/sunuhelp** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Application de localisation en temps réel de ressources et de services — permet à toute personne de trouver un commerce, un établissement de santé, une école, une administration ou tout autre service à proximité, et à toute structure d'enregistrer et de faire connaître son offre.
 
-Here are some ideas to get you started:
+## Contexte
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+Projet réalisé dans le cadre du Master 2 — Section Informatique, Faculté des Sciences et Techniques, Université Cheikh Anta Diop de Dakar.
+
+## Architecture
+
+Architecture microservices en Java / Spring Boot :
+
+| Service | Rôle |
+|---|---|
+| `auth-service` | Comptes, OTP, JWT, rôles |
+| `category-service` | Catégories et sous-catégories hiérarchiques |
+| `entity-service` | Entités, points de service, horaires, offres, niveau de confiance |
+| `review-service` | Avis, notes, réponses |
+| `user-service` | Profils Usager, favoris, historique de recherche |
+| `search-service` | Index de recherche (Elasticsearch) |
+| `geo-service` | Géocodage d'adresses (cache) |
+| `media-service` | Stockage des fichiers (logos, photos, documents) |
+| `notification-service` | Envoi de SMS (OTP) et d'emails |
+
+Infrastructure : API Gateway (Spring Cloud Gateway), Eureka (service discovery), Kafka (événements asynchrones), PostgreSQL (une base par service), Elasticsearch (recherche).
+
+## Documentation
+
+- [Cahier des charges complet](docs/cahier-des-charges/Cahier_des_charges_V1_DAOUDA_BA.docx)
+- [Diagramme de cas d'utilisation](docs/diagrams/diagramme_cas_utilisation_global.png)
+
+## Statut
+
+🚧 En cours de conception — modélisation des données et diagrammes UML en cours, implémentation à venir.
+
+## Auteur
+
+Daouda Ba
