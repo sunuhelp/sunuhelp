@@ -19,6 +19,23 @@ services:
       timeout: 5s
       retries: 5
 
+  category-db:
+    image: postgres:16-alpine
+    container_name: sunuhelp-category-db
+    environment:
+      POSTGRES_DB: category_db
+      POSTGRES_USER: sunuhelp
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+    ports:
+      - "5434:5432"
+    volumes:
+      - category_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sunuhelp -d category_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
     container_name: sunuhelp-zookeeper
@@ -42,3 +59,4 @@ services:
 
 volumes:
   auth_db_data:
+  category_db_data:
