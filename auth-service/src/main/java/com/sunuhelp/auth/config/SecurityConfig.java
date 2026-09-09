@@ -34,7 +34,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Routes d'authentification elles-memes : forcement publiques.
                         .requestMatchers("/api/v1/auth/register", "/api/v1/auth/login",
-                                "/api/v1/auth/verify-otp", "/api/v1/auth/refresh").permitAll()
+                                "/api/v1/auth/verify-otp", "/api/v1/auth/refresh", "/api/v1/auth/logout").permitAll()
                         // Documentation API et supervision technique.
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**")
                         .permitAll()

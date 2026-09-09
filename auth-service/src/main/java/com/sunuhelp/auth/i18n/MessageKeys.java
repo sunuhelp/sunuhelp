@@ -38,6 +38,8 @@ public final class MessageKeys {
     /** Filet de securite pour toute exception non prevue. */
     public static final String ERROR_UNEXPECTED = "error.unexpected";
 
+    public static final String REFRESH_TOKEN_INVALID = "auth.refresh-token.invalid";
+
     private MessageKeys() {
     }
 }

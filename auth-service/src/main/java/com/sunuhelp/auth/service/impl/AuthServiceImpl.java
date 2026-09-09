@@ -15,6 +15,7 @@ import com.sunuhelp.auth.exception.AccountAlreadyExistsException;
 import com.sunuhelp.auth.exception.AccountNotVerifiedException;
 import com.sunuhelp.auth.exception.AccountSuspendedException;
 import com.sunuhelp.auth.exception.InvalidCredentialsException;
+import com.sunuhelp.auth.exception.InvalidRefreshTokenException;
 import com.sunuhelp.auth.mapper.AccountMapper;
 import com.sunuhelp.auth.repository.AccountRepository;
 import com.sunuhelp.auth.repository.LoginAttemptRepository;
@@ -126,7 +127,7 @@ public class AuthServiceImpl implements AuthService {
         String hash = tokenHasher.hash(request.getRefreshToken());
         RefreshToken token = refreshTokenRepository.findByTokenHash(hash)
                 .filter(RefreshToken::isValid)
-                .orElseThrow(InvalidCredentialsException::new);
+                .orElseThrow(InvalidRefreshTokenException::new);
 
         Account account = accountRepository.findById(token.getAccountId())
                 .orElseThrow(() -> new ResourceNotFoundException(MessageKeys.ACCOUNT_NOT_FOUND));
