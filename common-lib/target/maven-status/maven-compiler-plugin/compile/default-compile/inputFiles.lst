@@ -4,3 +4,6 @@ C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common
 C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common\exception\BusinessException.java
 C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common\exception\ErrorResponse.java
 C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common\exception\ResourceNotFoundException.java
+C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common\security\JwtAuthenticationFilter.java
+C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common\security\JwtProperties.java
+C:\Users\DAOUDA BA\Projets\sunuhelp\common-lib\src\main\java\com\sunuhelp\common\security\JwtValidator.java

@@ -1,6 +1,5 @@
-package com.sunuhelp.auth.security.jwt;
+package com.sunuhelp.common.security;
 
-import com.sunuhelp.auth.enums.Role;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,19 +16,18 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Intercepte chaque requete, verifie le JWT s'il est present, et peuple le
- * contexte de securite Spring - evite de revalider le token manuellement
- * dans chaque controleur.
+ * Filtre partage par tous les microservices - identique a celui utilise
+ * par auth-service, mais base sur JwtValidator (verification seule).
  */
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final String BEARER_PREFIX = "Bearer ";
 
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtValidator jwtValidator;
 
-    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
-        this.jwtTokenProvider = jwtTokenProvider;
+    public JwtAuthenticationFilter(JwtValidator jwtValidator) {
+        this.jwtValidator = jwtValidator;
     }
 
     @Override
@@ -43,11 +41,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (header != null && header.startsWith(BEARER_PREFIX)) {
             String token = header.substring(BEARER_PREFIX.length());
 
-            if (jwtTokenProvider.isTokenValid(token)) {
-                UUID accountId = jwtTokenProvider.getAccountId(token);
-                Role role = jwtTokenProvider.getRole(token);
+            if (jwtValidator.isValid(token)) {
+                UUID accountId = jwtValidator.getAccountId(token);
+                String role = jwtValidator.getRole(token);
 
-                var authorities = List.of(new SimpleGrantedAuthority("ROLE_" + role.name()));
+                var authorities = List.of(new SimpleGrantedAuthority("ROLE_" + role));
                 var authentication = new UsernamePasswordAuthenticationToken(
                         accountId, null, authorities);
 

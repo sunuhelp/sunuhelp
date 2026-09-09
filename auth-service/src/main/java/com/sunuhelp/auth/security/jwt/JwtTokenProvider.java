@@ -1,7 +1,8 @@
 package com.sunuhelp.auth.security.jwt;
 
-import com.sunuhelp.auth.config.JwtProperties;
+import com.sunuhelp.auth.config.JwtIssuanceProperties;
 import com.sunuhelp.auth.enums.Role;
+import com.sunuhelp.common.security.JwtProperties;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -20,17 +21,21 @@ import java.util.UUID;
  * Emission et validation des JWT (access token). Le refresh token n'est
  * volontairement PAS un JWT : c'est une valeur opaque aleatoire, dont seul
  * le hash est stocke en base (meme logique que l'OTP).
+ *
+ * JwtProperties (common-lib) fournit le secret partage par tous les
+ * services. JwtIssuanceProperties (propre a auth-service) fournit les
+ * durees de vie, utiles uniquement au service qui emet les tokens.
  */
 @Component
 public class JwtTokenProvider {
 
     private static final String CLAIM_ROLE = "role";
 
-    private final JwtProperties jwtProperties;
+    private final JwtIssuanceProperties jwtIssuanceProperties;
     private final SecretKey signingKey;
 
-    public JwtTokenProvider(JwtProperties jwtProperties) {
-        this.jwtProperties = jwtProperties;
+    public JwtTokenProvider(JwtProperties jwtProperties, JwtIssuanceProperties jwtIssuanceProperties) {
+        this.jwtIssuanceProperties = jwtIssuanceProperties;
         this.signingKey = Keys.hmacShaKeyFor(
                 jwtProperties.getSecret().getBytes(StandardCharsets.UTF_8));
     }
@@ -38,7 +43,7 @@ public class JwtTokenProvider {
     /** Genere le token d'acces, court duree, transporte l'id du compte et son role. */
     public String generateAccessToken(UUID accountId, Role role) {
         Instant now = Instant.now();
-        Instant expiry = now.plus(jwtProperties.getAccessTokenExpirationMinutes(), ChronoUnit.MINUTES);
+        Instant expiry = now.plus(jwtIssuanceProperties.getAccessTokenExpirationMinutes(), ChronoUnit.MINUTES);
 
         return Jwts.builder()
                 .subject(accountId.toString())

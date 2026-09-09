@@ -1,6 +1,7 @@
 package com.sunuhelp.auth.service.impl;
 
-import com.sunuhelp.auth.config.JwtProperties;
+import com.sunuhelp.common.security.JwtProperties;
+import com.sunuhelp.auth.config.JwtIssuanceProperties;
 import com.sunuhelp.auth.dto.request.LoginRequest;
 import com.sunuhelp.auth.dto.request.RefreshTokenRequest;
 import com.sunuhelp.auth.dto.request.RegisterRequest;
@@ -40,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
     private final LoginAttemptRepository loginAttemptRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
-    private final JwtProperties jwtProperties;
+    private final JwtIssuanceProperties jwtIssuanceProperties;
     private final AccountMapper accountMapper;
     private final OtpService otpService;
     private final TokenHasher tokenHasher;
@@ -50,7 +51,7 @@ public class AuthServiceImpl implements AuthService {
                             LoginAttemptRepository loginAttemptRepository,
                             PasswordEncoder passwordEncoder,
                             JwtTokenProvider jwtTokenProvider,
-                            JwtProperties jwtProperties,
+                            JwtIssuanceProperties jwtIssuanceProperties,
                             AccountMapper accountMapper,
                             OtpService otpService,
                             TokenHasher tokenHasher) {
@@ -59,7 +60,7 @@ public class AuthServiceImpl implements AuthService {
         this.loginAttemptRepository = loginAttemptRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtTokenProvider = jwtTokenProvider;
-        this.jwtProperties = jwtProperties;
+        this.jwtIssuanceProperties = jwtIssuanceProperties;
         this.accountMapper = accountMapper;
         this.otpService = otpService;
         this.tokenHasher = tokenHasher;
@@ -156,14 +157,14 @@ public class AuthServiceImpl implements AuthService {
         RefreshToken refreshToken = RefreshToken.issue(
                 account.getId(),
                 tokenHasher.hash(rawRefreshToken),
-                LocalDateTime.now().plusDays(jwtProperties.getRefreshTokenExpirationDays()),
+                LocalDateTime.now().plusDays(jwtIssuanceProperties.getRefreshTokenExpirationDays()),
                 userAgent);
         refreshTokenRepository.save(refreshToken);
 
         return TokenResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(rawRefreshToken)
-                .expiresIn(jwtProperties.getAccessTokenExpirationMinutes() * 60)
+                .expiresIn(jwtIssuanceProperties.getAccessTokenExpirationMinutes() * 60)
                 .build();
     }
 }
