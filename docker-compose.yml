@@ -70,6 +70,23 @@ services:
       timeout: 5s
       retries: 5
 
+  user-db:
+    image: postgres:16-alpine
+    container_name: sunuhelp-user-db
+    environment:
+      POSTGRES_DB: user_db
+      POSTGRES_USER: sunuhelp
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+    ports:
+      - "5437:5432"
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sunuhelp -d user_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
     container_name: sunuhelp-zookeeper
@@ -96,3 +113,4 @@ volumes:
   category_db_data:
   entity_db_data:
   review_db_data:
+  user_db_data:
