@@ -76,7 +76,7 @@ public class AuthServiceImpl implements AuthService {
         Account account = Account.register(
                 request.getPhoneNumber(), request.getEmail(),
                 passwordEncoder.encode(request.getPassword()));
-        accountRepository.save(account);
+        accountRepository.saveAndFlush(account);
 
         otpService.generateAndSend(account, OtpType.REGISTRATION);
 
