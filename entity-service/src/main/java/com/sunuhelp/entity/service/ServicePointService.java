@@ -19,4 +19,7 @@ public interface ServicePointService {
 
     /** Remplace la semaine complete d'horaires en une seule operation. */
     List<OpeningHoursResponse> setOpeningHours(UUID servicePointId, SetOpeningHoursRequest request, UUID requesterAccountId);
+
+    /** Lecture seule - necessaire pour que search-service puisse calculer "ouvert maintenant" a la recherche. */
+    List<OpeningHoursResponse> findOpeningHours(UUID servicePointId);
 }

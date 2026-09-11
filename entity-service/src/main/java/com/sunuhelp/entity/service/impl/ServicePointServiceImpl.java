@@ -1,7 +1,6 @@
 package com.sunuhelp.entity.service.impl;
 
 import com.sunuhelp.entity.dto.request.CreateServicePointRequest;
-import com.sunuhelp.entity.dto.request.OpeningHourRequest;
 import com.sunuhelp.entity.dto.request.SetOpeningHoursRequest;
 import com.sunuhelp.entity.dto.request.SetTemporaryStatusRequest;
 import com.sunuhelp.entity.dto.response.OpeningHoursResponse;
@@ -88,6 +87,13 @@ public class ServicePointServiceImpl implements ServicePointService {
 
         point.setTemporaryStatus(request.getStatus(), request.getUntil());
         servicePointRepository.save(point);
+    }
+
+    @Override
+    public List<OpeningHoursResponse> findOpeningHours(UUID servicePointId) {
+        return openingHoursRepository.findByServicePointId(servicePointId).stream()
+                .map(openingHoursMapper::toResponse)
+                .toList();
     }
 
     @Override

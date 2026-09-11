@@ -53,6 +53,12 @@ public class ServicePointController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/api/v1/service-points/{id}/opening-hours")
+    @Operation(summary = "Lit les horaires - public, utilise notamment par search-service")
+    public ResponseEntity<List<OpeningHoursResponse>> getOpeningHours(@PathVariable UUID id) {
+        return ResponseEntity.ok(servicePointService.findOpeningHours(id));
+    }
+
     @PutMapping("/api/v1/service-points/{id}/opening-hours")
     @Operation(summary = "Remplace les horaires de la semaine - proprietaire uniquement")
     public ResponseEntity<List<OpeningHoursResponse>> setOpeningHours(@PathVariable UUID id,
