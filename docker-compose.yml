@@ -104,6 +104,23 @@ services:
       timeout: 5s
       retries: 5
 
+  media-db:
+    image: postgres:16-alpine
+    container_name: sunuhelp-media-db
+    environment:
+      POSTGRES_DB: media_db
+      POSTGRES_USER: sunuhelp
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+    ports:
+      - "5439:5432"
+    volumes:
+      - media_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sunuhelp -d media_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
     container_name: sunuhelp-zookeeper
@@ -137,6 +154,13 @@ services:
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
 
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 volumes:
   auth_db_data:
   category_db_data:
@@ -144,4 +168,5 @@ volumes:
   review_db_data:
   user_db_data:
   geo_db_data:
+  media_db_data:
   elasticsearch_data:

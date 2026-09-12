@@ -1,0 +1,70 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: media-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5439/media_db
+    username: sunuhelp
+    password: ${DB_PASSWORD:sunuhelp_dev_password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  messages:
+    basename: messages/messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+
+  # Necessaire pour accepter des uploads de fichiers (multipart/form-data)
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: media-service
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:changeme-dev-secret-a-remplacer-en-production-0123456789}
+  # Dossier local ou les fichiers sont physiquement stockes - isole derriere
+  # une interface (MediaStorageClient), remplacable par un vrai stockage
+  # cloud plus tard sans changer le reste du service.
+  storage:
+    local-path: ./media-storage
+
+logging:
+  level:
+    com.sunuhelp: DEBUG
