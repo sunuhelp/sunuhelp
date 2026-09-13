@@ -121,6 +121,23 @@ services:
       timeout: 5s
       retries: 5
 
+  notification-db:
+    image: postgres:16-alpine
+    container_name: sunuhelp-notification-db
+    environment:
+      POSTGRES_DB: notification_db
+      POSTGRES_USER: sunuhelp
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+    ports:
+      - "5440:5432"
+    volumes:
+      - notification_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sunuhelp -d notification_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
     container_name: sunuhelp-zookeeper
@@ -162,6 +179,7 @@ services:
       retries: 5
 
 volumes:
+  notification_db_data:
   auth_db_data:
   category_db_data:
   entity_db_data:
