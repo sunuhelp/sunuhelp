@@ -25,6 +25,6 @@ public class ServicePointResponse {
     private TemporaryStatus temporaryStatus;
     private LocalDateTime temporaryStatusUntil;
     private GeocodingStatus geocodingStatus;
-    /** Calcule a la volee au moment de la reponse - jamais stocke. */
+    private String phoneNumber;
     private boolean currentlyOpen;
 }

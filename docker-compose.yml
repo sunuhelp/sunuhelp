@@ -2,9 +2,12 @@ name: sunuhelp
 
 services:
 
+  # ---- Infrastructure ----
+
   auth-db:
     image: postgres:16-alpine
     container_name: sunuhelp-auth-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: auth_db
       POSTGRES_USER: sunuhelp
@@ -22,6 +25,7 @@ services:
   category-db:
     image: postgres:16-alpine
     container_name: sunuhelp-category-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: category_db
       POSTGRES_USER: sunuhelp
@@ -39,6 +43,7 @@ services:
   entity-db:
     image: postgres:16-alpine
     container_name: sunuhelp-entity-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: entity_db
       POSTGRES_USER: sunuhelp
@@ -56,6 +61,7 @@ services:
   review-db:
     image: postgres:16-alpine
     container_name: sunuhelp-review-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: review_db
       POSTGRES_USER: sunuhelp
@@ -73,6 +79,7 @@ services:
   user-db:
     image: postgres:16-alpine
     container_name: sunuhelp-user-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: user_db
       POSTGRES_USER: sunuhelp
@@ -90,6 +97,7 @@ services:
   geo-db:
     image: postgres:16-alpine
     container_name: sunuhelp-geo-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: geo_db
       POSTGRES_USER: sunuhelp
@@ -107,6 +115,7 @@ services:
   media-db:
     image: postgres:16-alpine
     container_name: sunuhelp-media-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: media_db
       POSTGRES_USER: sunuhelp
@@ -124,6 +133,7 @@ services:
   notification-db:
     image: postgres:16-alpine
     container_name: sunuhelp-notification-db
+    restart: unless-stopped
     environment:
       POSTGRES_DB: notification_db
       POSTGRES_USER: sunuhelp
@@ -141,6 +151,7 @@ services:
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.1
     container_name: sunuhelp-zookeeper
+    restart: unless-stopped
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
@@ -148,6 +159,7 @@ services:
   kafka:
     image: confluentinc/cp-kafka:7.6.1
     container_name: sunuhelp-kafka
+    restart: unless-stopped
     depends_on:
       - zookeeper
     ports:
@@ -155,31 +167,257 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-
+    healthcheck:
+      test: ["CMD-SHELL", "nc -z localhost 9092"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
     container_name: sunuhelp-elasticsearch
+    restart: unless-stopped
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms384m -Xmx384m"
     ports:
       - "9200:9200"
     volumes:
       - elasticsearch_data:/usr/share/elasticsearch/data
-
-    command: server /data --console-address ":9001"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 15
+      start_period: 90s
+
+  # ---- Infrastructure applicative ----
+
+  discovery-server:
+    image: sunuhelp-discovery-server:latest
+    container_name: sunuhelp-discovery-server
+    restart: unless-stopped
+    environment:
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8761/actuator/health"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 15
+      start_period: 120s
+
+  api-gateway:
+    image: sunuhelp-api-gateway:latest
+    container_name: sunuhelp-api-gateway
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+
+  # ---- Microservices ----
+
+  auth-service:
+    image: sunuhelp-auth-service:latest
+    container_name: sunuhelp-auth-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      auth-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://auth-db:5432/auth_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms192m -Xmx320m"
+
+  category-service:
+    image: sunuhelp-category-service:latest
+    container_name: sunuhelp-category-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      category-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8082:8082"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://category-db:5432/category_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms192m -Xmx320m"
+
+  entity-service:
+    image: sunuhelp-entity-service:latest
+    container_name: sunuhelp-entity-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      entity-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8083:8083"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://entity-db:5432/entity_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms192m -Xmx384m"
+
+  review-service:
+    image: sunuhelp-review-service:latest
+    container_name: sunuhelp-review-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      review-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8084:8084"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://review-db:5432/review_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms192m -Xmx320m"
+
+  user-service:
+    image: sunuhelp-user-service:latest
+    container_name: sunuhelp-user-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      user-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8085:8085"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://user-db:5432/user_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms192m -Xmx320m"
+
+  search-service:
+    image: sunuhelp-search-service:latest
+    container_name: sunuhelp-search-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8086:8086"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms192m -Xmx384m"
+
+  geo-service:
+    image: sunuhelp-geo-service:latest
+    container_name: sunuhelp-geo-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      geo-db:
+        condition: service_healthy
+    ports:
+      - "8087:8087"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://geo-db:5432/geo_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms128m -Xmx256m"
+
+  media-service:
+    image: sunuhelp-media-service:latest
+    container_name: sunuhelp-media-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      media-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8088:8088"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://media-db:5432/media_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      STORAGE_PATH: /app/media-storage
+      JAVA_OPTS: "-Xms192m -Xmx320m"
+    volumes:
+      - media_files:/app/media-storage
+
+  notification-service:
+    image: sunuhelp-notification-service:latest
+    container_name: sunuhelp-notification-service
+    restart: unless-stopped
+    depends_on:
+      discovery-server:
+        condition: service_healthy
+      notification-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    ports:
+      - "8089:8089"
+    environment:
+      EUREKA_URL: http://discovery-server:8761/eureka/
+      DB_URL: jdbc:postgresql://notification-db:5432/notification_db
+      DB_PASSWORD: ${DB_PASSWORD:-sunuhelp_dev_password}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      JWT_SECRET: ${JWT_SECRET:-changeme-dev-secret-a-remplacer-en-production-0123456789}
+      JAVA_OPTS: "-Xms128m -Xmx256m"
 
 volumes:
-  notification_db_data:
   auth_db_data:
   category_db_data:
   entity_db_data:
@@ -187,4 +425,6 @@ volumes:
   user_db_data:
   geo_db_data:
   media_db_data:
+  notification_db_data:
   elasticsearch_data:
+  media_files:

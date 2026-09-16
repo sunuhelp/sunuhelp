@@ -12,6 +12,15 @@ eureka:
   server:
     enable-self-preservation: false
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
 logging:
   level:
     com.netflix.eureka: WARN

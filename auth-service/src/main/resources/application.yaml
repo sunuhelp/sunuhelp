@@ -4,13 +4,11 @@ server:
 spring:
   application:
     name: auth-service
-
   datasource:
-    url: jdbc:postgresql://localhost:5433/auth_db
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/auth_db}
     username: sunuhelp
     password: ${DB_PASSWORD:sunuhelp_dev_password}
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -19,14 +17,12 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
   messages:
     basename: messages/messages
     encoding: UTF-8
     fallback-to-system-locale: false
-
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
       group-id: auth-service
       auto-offset-reset: earliest
@@ -37,7 +33,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
 
@@ -46,13 +42,14 @@ management:
     web:
       exposure:
         include: health,info
+  endpoint:
+    health:
+      show-details: never
 
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
-# Proprietes propres a auth-service, liees via @ConfigurationProperties
-# (classes JwtProperties / OtpProperties a creer dans le package config)
 app:
   jwt:
     secret: ${JWT_SECRET:changeme-dev-secret-a-remplacer-en-production-0123456789}

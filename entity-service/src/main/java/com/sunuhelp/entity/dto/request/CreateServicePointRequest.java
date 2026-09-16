@@ -8,11 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * address et coverageZone sont tous deux facultatifs au niveau validation
- * de base - la coherence avec "type" (l'un des deux est obligatoire selon
- * le cas) est verifiee cote service, pas via une annotation seule.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,4 +23,7 @@ public class CreateServicePointRequest {
     private String address;
 
     private String coverageZone;
+
+    /** Facultatif - permet d'afficher un bouton "Appeler" cote frontend quand renseigne. */
+    private String phoneNumber;
 }

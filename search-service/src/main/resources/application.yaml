@@ -4,12 +4,10 @@ server:
 spring:
   application:
     name: search-service
-
   elasticsearch:
-    uris: http://localhost:9200
-
+    uris: ${ELASTICSEARCH_URL:http://localhost:9200}
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
       group-id: search-service
       auto-offset-reset: earliest
@@ -22,7 +20,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
 
@@ -31,6 +29,9 @@ management:
     web:
       exposure:
         include: health,info
+  endpoint:
+    health:
+      show-details: never
 
 springdoc:
   swagger-ui:

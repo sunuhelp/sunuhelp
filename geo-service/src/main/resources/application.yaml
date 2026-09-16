@@ -4,13 +4,11 @@ server:
 spring:
   application:
     name: geo-service
-
   datasource:
-    url: jdbc:postgresql://localhost:5438/geo_db
+    url: ${DB_URL:jdbc:postgresql://localhost:5438/geo_db}
     username: sunuhelp
     password: ${DB_PASSWORD:sunuhelp_dev_password}
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,7 +16,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
   messages:
     basename: messages/messages
     encoding: UTF-8
@@ -27,7 +24,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
 
@@ -36,6 +33,9 @@ management:
     web:
       exposure:
         include: health,info
+  endpoint:
+    health:
+      show-details: never
 
 springdoc:
   swagger-ui:

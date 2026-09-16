@@ -63,7 +63,7 @@ public class ServicePointServiceImpl implements ServicePointService {
         }
 
         ServicePoint point = ServicePoint.create(entityId, request.getName(), request.getType(),
-                request.getAddress(), request.getCoverageZone());
+                request.getAddress(), request.getCoverageZone(), request.getPhoneNumber());
         servicePointRepository.save(point);
 
         // Geocodage reel via geo-service a brancher plus tard (client HTTP entre services) -
