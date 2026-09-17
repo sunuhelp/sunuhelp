@@ -73,6 +73,11 @@ public class Account extends BaseEntity {
     }
 
     /** Bascule le compte en actif, apres validation reussie de l'OTP. */
+    /** Reservee au DevDataInitializer (donnees de demarrage) - jamais exposee via un endpoint public. */
+    public void promoteToAdmin() {
+        this.role = Role.ADMIN;
+    }
+
     public void activate() {
         this.phoneVerified = true;
         this.accountStatus = AccountStatus.ACTIVE;
