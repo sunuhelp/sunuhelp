@@ -14,6 +14,41 @@ spring:
               predicates:
                 - Path=/api/v1/auth/**
 
+            - id: category-service
+              uri: lb://category-service
+              predicates:
+                - Path=/api/v1/categories/**
+
+            - id: entity-service
+              uri: lb://entity-service
+              predicates:
+                - Path=/api/v1/entities/**,/api/v1/service-points/**,/api/v1/documents/**
+
+            - id: review-service
+              uri: lb://review-service
+              predicates:
+                - Path=/api/v1/reviews/**
+
+            - id: user-service
+              uri: lb://user-service
+              predicates:
+                - Path=/api/v1/profile/**,/api/v1/favorites/**,/api/v1/search-history/**
+
+            - id: search-service
+              uri: lb://search-service
+              predicates:
+                - Path=/api/v1/search/**
+
+            - id: geo-service
+              uri: lb://geo-service
+              predicates:
+                - Path=/api/v1/geocode/**
+
+            - id: media-service
+              uri: lb://media-service
+              predicates:
+                - Path=/api/v1/media/**
+
 eureka:
   client:
     service-url:
