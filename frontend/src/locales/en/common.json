@@ -1,0 +1,20 @@
+{
+  "app_name": "SunuHelp",
+  "auth": {
+    "login": "Log in",
+    "register": "Sign up"
+  },
+  "search": {
+    "placeholder": "KFC, pharmacy, jeweler...",
+    "radius": "Radius",
+    "location_detected": "Location detected",
+    "location_denied": "Your approximate location"
+  },
+  "categories": {
+    "see_more": "See more categories"
+  },
+  "errors": {
+    "generic": "Something went wrong. Try again.",
+    "network": "No internet connection"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "app_name": "SunuHelp",
+  "auth": {
+    "login": "Se connecter",
+    "register": "S'inscrire"
+  },
+  "search": {
+    "placeholder": "KFC, pharmacie, bijouterie...",
+    "radius": "Rayon",
+    "location_detected": "Position détectée",
+    "location_denied": "Votre position approximative"
+  },
+  "categories": {
+    "see_more": "Voir plus de catégories"
+  },
+  "errors": {
+    "generic": "Une erreur est survenue. Réessayez.",
+    "network": "Pas de connexion internet"
+  }
+}
