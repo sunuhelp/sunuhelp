@@ -23,6 +23,7 @@
     "react-i18next": "^17.0.14",
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.18.4",
+    "sonner": "^2.0.8",
     "tailwindcss": "^4.3.3",
     "zod": "^4.6.5",
     "zustand": "^5.0.15"

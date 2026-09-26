@@ -38,3 +38,35 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
 }
+
+/* Curseur de rayon - Tailwind ne peut pas cibler le "thumb" natif,
+   necessite du CSS dedie pour un rendu coherent avec nos tokens de couleur. */
+.sunuhelp-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--color-border);
+  outline: none;
+}
+
+.sunuhelp-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.sunuhelp-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: 3px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-border);
+}

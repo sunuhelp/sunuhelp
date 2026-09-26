@@ -1,29 +1,40 @@
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { SearchBar } from '../components/SearchBar'
 import { CategoryGrid } from '../components/CategoryGrid'
+import { HowItWorks } from '../components/HowItWorks'
+import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 
 export default function HomePage() {
   const { t } = useTranslation()
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)]">
-      <header className="flex items-center justify-between px-4 py-4 max-w-3xl mx-auto">
-        <span className="font-[var(--font-display)] font-medium text-lg">
-          {t('app_name')}
-        </span>
-        <nav className="flex items-center gap-4 text-sm">
-          <Link to="/inscription">{t('auth.register')}</Link>
-          <Link to="/connexion" className="text-[var(--color-accent)]">
-            {t('auth.login')}
-          </Link>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] flex flex-col">
+      <Header />
 
-      <main className="px-4 pt-8 max-w-3xl mx-auto">
-        <SearchBar />
+      <div className="relative overflow-hidden bg-[var(--color-surface)] border-b border-[var(--color-border)]">
+        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-[0.07] pointer-events-none" style={{ background: 'var(--color-accent)' }} />
+        <div className="absolute -bottom-32 -left-16 w-80 h-80 rounded-full opacity-[0.06] pointer-events-none" style={{ background: 'var(--color-accent-warm)' }} />
+
+        <main className="relative px-6 pt-14 pb-16 max-w-6xl mx-auto w-full">
+          <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-medium text-center max-w-2xl mx-auto leading-tight">
+            {t('home.headline')}
+          </h1>
+          <p className="text-center text-[var(--color-ink-muted)] mt-3 max-w-xl mx-auto">
+            {t('home.subheadline')}
+          </p>
+          <div className="mt-8">
+            <SearchBar />
+          </div>
+        </main>
+      </div>
+
+      <div className="flex-1 max-w-6xl mx-auto w-full px-6 py-14">
         <CategoryGrid />
-      </main>
+        <HowItWorks />
+      </div>
+
+      <Footer />
     </div>
   )
 }

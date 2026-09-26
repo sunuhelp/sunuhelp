@@ -1,11 +1,65 @@
 {
-  "app_name": "SunuHelp",
+  "brand": {
+    "title": "Recherche locale",
+    "tagline": "Trouvez tout, en temps réel, près de chez vous"
+  },
   "auth": {
     "login": "Se connecter",
-    "register": "S'inscrire"
+    "register": "S'inscrire",
+    "phone_label": "Numéro de téléphone",
+    "email_label": "Email (facultatif)",
+    "password_label": "Mot de passe",
+    "register_submit": "S'inscrire",
+    "register_tagline": "Rejoignez-nous en quelques secondes",
+    "already_have_account": "Déjà inscrit ?",
+    "register_submitting": "Inscription...",
+    "register_success": "Compte créé ! Vérifiez votre téléphone.",
+    "otp_title": "Vérification",
+    "otp_subtitle": "Entrez le code à 6 chiffres envoyé au {{phone}}",
+    "otp_verify": "Vérifier",
+    "otp_verifying": "Vérification...",
+    "otp_resend": "Renvoyer le code",
+    "otp_resend_countdown": "Renvoyer dans {{time}}",
+    "otp_resent": "Code renvoyé",
+    "welcome_back": "Bienvenue !",
+    "logout": "Se déconnecter",
+    "logout_confirm": "Se déconnecter ?",
+    "logged_out": "Vous êtes déconnecté"
+  },
+  "account": {
+    "favorites": "Mes favoris",
+    "add_business": "Ajouter mon commerce"
+  },
+  "common": {
+    "cancel": "Annuler"
+  },
+  "footer": {
+    "discover": "Découvrir",
+    "home": "Accueil",
+    "categories": "Catégories",
+    "account": "Compte"
+  },
+  "validation": {
+    "phone_required": "Le numéro de téléphone est obligatoire",
+    "phone_invalid": "Format de numéro invalide",
+    "email_invalid": "Format d'email invalide",
+    "password_too_short": "Le mot de passe doit contenir au moins 8 caractères",
+    "otp_invalid": "Le code doit contenir 6 chiffres"
+  },
+  "home": {
+    "headline": "Trouvez un service près de chez vous",
+    "subheadline": "Pharmacies, artisans, commerces et bien plus, à Dakar et partout au Sénégal.",
+    "categories_title": "Parcourir par catégorie",
+    "how_it_works_title": "Comment ça marche",
+    "steps": {
+      "search": { "title": "Recherchez", "description": "Tapez ce que vous cherchez ou choisissez une catégorie." },
+      "compare": { "title": "Comparez", "description": "Consultez les avis, horaires et distances autour de vous." },
+      "contact": { "title": "Contactez", "description": "Appelez directement ou obtenez l'itinéraire en un clic." }
+    }
   },
   "search": {
     "placeholder": "KFC, pharmacie, bijouterie...",
+    "submit": "Rechercher",
     "radius": "Rayon",
     "location_detected": "Position détectée",
     "location_denied": "Votre position approximative"
@@ -15,6 +69,7 @@
   },
   "errors": {
     "generic": "Une erreur est survenue. Réessayez.",
-    "network": "Pas de connexion internet"
+    "network": "Pas de connexion internet",
+    "phone_already_exists": "Ce numéro est déjà utilisé"
   }
 }

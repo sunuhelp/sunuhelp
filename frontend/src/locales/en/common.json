@@ -1,11 +1,65 @@
 {
-  "app_name": "SunuHelp",
+  "brand": {
+    "title": "Local Search",
+    "tagline": "Find anything, in real time, near you"
+  },
   "auth": {
     "login": "Log in",
-    "register": "Sign up"
+    "register": "Sign up",
+    "phone_label": "Phone number",
+    "email_label": "Email (optional)",
+    "password_label": "Password",
+    "register_submit": "Sign up",
+    "register_tagline": "Join us in seconds",
+    "already_have_account": "Already have an account?",
+    "register_submitting": "Signing up...",
+    "register_success": "Account created! Check your phone.",
+    "otp_title": "Verification",
+    "otp_subtitle": "Enter the 6-digit code sent to {{phone}}",
+    "otp_verify": "Verify",
+    "otp_verifying": "Verifying...",
+    "otp_resend": "Resend code",
+    "otp_resend_countdown": "Resend in {{time}}",
+    "otp_resent": "Code resent",
+    "welcome_back": "Welcome!",
+    "logout": "Log out",
+    "logout_confirm": "Log out?",
+    "logged_out": "You are logged out"
+  },
+  "account": {
+    "favorites": "My favorites",
+    "add_business": "Add my business"
+  },
+  "common": {
+    "cancel": "Cancel"
+  },
+  "footer": {
+    "discover": "Discover",
+    "home": "Home",
+    "categories": "Categories",
+    "account": "Account"
+  },
+  "validation": {
+    "phone_required": "Phone number is required",
+    "phone_invalid": "Invalid phone number format",
+    "email_invalid": "Invalid email format",
+    "password_too_short": "Password must be at least 8 characters",
+    "otp_invalid": "Code must be 6 digits"
+  },
+  "home": {
+    "headline": "Find a service near you",
+    "subheadline": "Pharmacies, craftsmen, shops and more, in Dakar and across Senegal.",
+    "categories_title": "Browse by category",
+    "how_it_works_title": "How it works",
+    "steps": {
+      "search": { "title": "Search", "description": "Type what you're looking for or pick a category." },
+      "compare": { "title": "Compare", "description": "Check reviews, hours and distance around you." },
+      "contact": { "title": "Contact", "description": "Call directly or get directions in one tap." }
+    }
   },
   "search": {
     "placeholder": "KFC, pharmacy, jeweler...",
+    "submit": "Search",
     "radius": "Radius",
     "location_detected": "Location detected",
     "location_denied": "Your approximate location"
@@ -15,6 +69,7 @@
   },
   "errors": {
     "generic": "Something went wrong. Try again.",
-    "network": "No internet connection"
+    "network": "No internet connection",
+    "phone_already_exists": "This number is already in use"
   }
 }
