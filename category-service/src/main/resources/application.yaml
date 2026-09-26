@@ -56,3 +56,9 @@ app:
 logging:
   level:
     com.sunuhelp: DEBUG
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
