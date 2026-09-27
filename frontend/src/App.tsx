@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import AddBusinessPage from './pages/AddBusinessPage'
 import BusinessCreatedPage from './pages/BusinessCreatedPage'
+import EntityDetailPage from './pages/EntityDetailPage'
 import { RequireAuth } from './components/RequireAuth'
 import { Toaster } from 'sonner'
 import './lib/i18n'
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/mon-commerce" element={<RequireAuth><AddBusinessPage /></RequireAuth>} />
           <Route path="/commerce-cree" element={<RequireAuth><BusinessCreatedPage /></RequireAuth>} />
+          <Route path="/entites/:id" element={<EntityDetailPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/inscription" element={<RegisterPage />} />
           <Route path="/connexion" element={<LoginPage />} />

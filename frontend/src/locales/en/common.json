@@ -149,5 +149,28 @@
     "description_placeholder": "What makes you unique...",
     "optional_hint": "Optional",
     "verification_prompt_body_soon": "This feature will soon be available from your dashboard."
+  },
+  "entity": {
+    "verified": "Verified",
+    "open_now": "Open",
+    "open_until": "Open · closes at {{time}}",
+    "closed_now": "Closed",
+    "reviews_count": "reviews",
+    "see_hours": "See hours",
+    "day_closed": "Closed",
+    "call": "Call",
+    "reviews_title": "Reviews",
+    "no_reviews": "No reviews yet.",
+    "day_mon": "Monday",
+    "day_tue": "Tuesday",
+    "day_wed": "Wednesday",
+    "day_thu": "Thursday",
+    "day_fri": "Friday",
+    "day_sat": "Saturday",
+    "day_sun": "Sunday",
+    "hours_unknown": "Hours not provided",
+    "no_hours_set": "No hours set yet.",
+    "owner_banner_title": "This is your listing!",
+    "owner_banner_body": "Add your hours, photos and documents from your dashboard (coming soon)."
   }
 }

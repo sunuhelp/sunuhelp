@@ -1,9 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { Logo } from './ui/Logo'
+import { useAuthStore } from '../stores/authStore'
 
 export function Footer() {
   const { t } = useTranslation()
+  const accessToken = useAuthStore((s) => s.accessToken)
 
   return (
     <footer className="border-t border-[var(--color-border)] bg-[var(--color-surface)] mt-auto">
@@ -27,8 +29,14 @@ export function Footer() {
         <div>
           <p className="text-sm font-medium mb-3">{t('footer.account')}</p>
           <ul className="space-y-2 text-sm text-[var(--color-ink-muted)]">
-            <li><Link to="/inscription" className="hover:text-[var(--color-accent)] transition-colors">{t('auth.register')}</Link></li>
-            <li><Link to="/connexion" className="hover:text-[var(--color-accent)] transition-colors">{t('auth.login')}</Link></li>
+            {accessToken ? (
+              <li><Link to="/favoris" className="hover:text-[var(--color-accent)] transition-colors">{t('account.favorites')}</Link></li>
+            ) : (
+              <>
+                <li><Link to="/inscription" className="hover:text-[var(--color-accent)] transition-colors">{t('auth.register')}</Link></li>
+                <li><Link to="/connexion" className="hover:text-[var(--color-accent)] transition-colors">{t('auth.login')}</Link></li>
+              </>
+            )}
           </ul>
         </div>
       </div>

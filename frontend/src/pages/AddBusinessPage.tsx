@@ -108,7 +108,7 @@ export default function AddBusinessPage() {
       // devenir "Mes commerces" sans attendre le cache de 30s.
       await queryClient.invalidateQueries({ queryKey: ['entities', 'mine'] })
       notify.success(t('add_business.created_success'))
-      navigate('/commerce-cree', { state: { name: data.name } })
+      navigate(`/entites/${entity.id}`)
     } catch {
       notify.error(t('errors.generic'))
     } finally {

@@ -149,5 +149,28 @@
     "description_placeholder": "Ce qui vous rend unique...",
     "optional_hint": "Facultatif",
     "verification_prompt_body_soon": "Cette fonctionnalité sera bientôt disponible depuis votre tableau de bord."
+  },
+  "entity": {
+    "verified": "Vérifiée",
+    "open_now": "Ouvert",
+    "open_until": "Ouvert · ferme à {{time}}",
+    "closed_now": "Fermé",
+    "reviews_count": "avis",
+    "see_hours": "Voir les horaires",
+    "day_closed": "Fermé",
+    "call": "Appeler",
+    "reviews_title": "Avis",
+    "no_reviews": "Aucun avis pour le moment.",
+    "day_mon": "Lundi",
+    "day_tue": "Mardi",
+    "day_wed": "Mercredi",
+    "day_thu": "Jeudi",
+    "day_fri": "Vendredi",
+    "day_sat": "Samedi",
+    "day_sun": "Dimanche",
+    "hours_unknown": "Horaires non renseignés",
+    "no_hours_set": "Aucun horaire renseigné pour le moment.",
+    "owner_banner_title": "C'est votre fiche !",
+    "owner_banner_body": "Ajoutez vos horaires, photos et documents depuis votre tableau de bord (bientôt disponible)."
   }
 }
