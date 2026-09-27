@@ -65,7 +65,13 @@ public class EntityServiceImpl implements EntityService {
 
         entityCategoryRepository.save(EntityCategory.createPrimary(entity.getId(), request.getCategoryId()));
 
-        eventProducer.publish(EntityCreatedEvent.of(entity.getId()));
+        org.springframework.transaction.support.TransactionSynchronizationManager.registerSynchronization(
+                new org.springframework.transaction.support.TransactionSynchronization() {
+                    @Override
+                    public void afterCommit() {
+                        eventProducer.publish(EntityCreatedEvent.of(entity.getId()));
+                    }
+                });
 
         return toResponse(entity, request.getCategoryId(), locale);
     }
@@ -91,7 +97,13 @@ public class EntityServiceImpl implements EntityService {
             translationRepository.save(EntityTranslation.of(entityId, t.getLocale(), t.getName(), t.getDescription()));
         }
 
-        eventProducer.publish(EntityUpdatedEvent.of(entityId));
+        org.springframework.transaction.support.TransactionSynchronizationManager.registerSynchronization(
+                new org.springframework.transaction.support.TransactionSynchronization() {
+                    @Override
+                    public void afterCommit() {
+                        eventProducer.publish(EntityUpdatedEvent.of(entityId));
+                    }
+                });
 
         UUID categoryId = primaryCategoryId(entityId);
         return toResponse(entity, categoryId, locale);
