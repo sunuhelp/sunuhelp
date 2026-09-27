@@ -172,5 +172,15 @@
     "no_hours_set": "Aucun horaire renseigné pour le moment.",
     "owner_banner_title": "C'est votre fiche !",
     "owner_banner_body": "Ajoutez vos horaires, photos et documents depuis votre tableau de bord (bientôt disponible)."
+  },
+  "results": {
+    "title_query": "Résultats pour \"{{query}}\"",
+    "title_category": "Résultats",
+    "filters": "Filtres",
+    "location_denied_hint": "Résultats triés par pertinence (position non partagée)",
+    "empty_title": "Aucun résultat dans un rayon de {{radius}} km",
+    "empty_body": "Essayez d'élargir la zone ou une autre recherche.",
+    "expand_radius": "Chercher dans {{radius}} km",
+    "show_results": "Afficher {{count}} résultats"
   }
 }

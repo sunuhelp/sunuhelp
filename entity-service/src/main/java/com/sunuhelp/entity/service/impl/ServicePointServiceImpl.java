@@ -1,5 +1,6 @@
 package com.sunuhelp.entity.service.impl;
 
+import com.sunuhelp.entity.client.GeoServiceClient;
 import com.sunuhelp.entity.dto.request.CreateServicePointRequest;
 import com.sunuhelp.entity.dto.request.SetOpeningHoursRequest;
 import com.sunuhelp.entity.dto.request.SetTemporaryStatusRequest;
@@ -18,6 +19,8 @@ import com.sunuhelp.entity.repository.OpeningHoursRepository;
 import com.sunuhelp.entity.repository.ServicePointRepository;
 import com.sunuhelp.entity.service.EntityOwnershipValidator;
 import com.sunuhelp.entity.service.ServicePointService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,25 +30,30 @@ import java.util.UUID;
 @Service
 public class ServicePointServiceImpl implements ServicePointService {
 
+    private static final Logger log = LoggerFactory.getLogger(ServicePointServiceImpl.class);
+
     private final ServicePointRepository servicePointRepository;
     private final OpeningHoursRepository openingHoursRepository;
     private final EntityOwnershipValidator ownershipValidator;
     private final ServicePointMapper servicePointMapper;
     private final OpeningHoursMapper openingHoursMapper;
     private final OpeningStatusResolver openingStatusResolver;
+    private final GeoServiceClient geoServiceClient;
 
     public ServicePointServiceImpl(ServicePointRepository servicePointRepository,
                                     OpeningHoursRepository openingHoursRepository,
                                     EntityOwnershipValidator ownershipValidator,
                                     ServicePointMapper servicePointMapper,
                                     OpeningHoursMapper openingHoursMapper,
-                                    OpeningStatusResolver openingStatusResolver) {
+                                    OpeningStatusResolver openingStatusResolver,
+                                    GeoServiceClient geoServiceClient) {
         this.servicePointRepository = servicePointRepository;
         this.openingHoursRepository = openingHoursRepository;
         this.ownershipValidator = ownershipValidator;
         this.servicePointMapper = servicePointMapper;
         this.openingHoursMapper = openingHoursMapper;
         this.openingStatusResolver = openingStatusResolver;
+        this.geoServiceClient = geoServiceClient;
     }
 
     @Override
@@ -66,8 +74,22 @@ public class ServicePointServiceImpl implements ServicePointService {
                 request.getAddress(), request.getCoverageZone(), request.getPhoneNumber());
         servicePointRepository.save(point);
 
-        // Geocodage reel via geo-service a brancher plus tard (client HTTP entre services) -
-        // point reste PENDING pour l'instant, publiable sans bloquer.
+        // Geocodage synchrone via geo-service - un echec (service indisponible,
+        // adresse introuvable) ne bloque JAMAIS la creation : le point reste
+        // PENDING/FAILED, publiable quand meme, cohorent avec la friction
+        // minimale appliquee partout ailleurs dans le projet.
+        if (request.getType() == ServicePointType.PHYSICAL) {
+            try {
+                var result = geoServiceClient.geocode(new GeoServiceClient.GeocodeRequest(request.getAddress()));
+                point.markGeocoded(result.latitude(), result.longitude());
+                servicePointRepository.save(point);
+            } catch (Exception e) {
+                log.warn("Echec geocodage pour le point {} ({}) : {}", point.getId(), request.getAddress(), e.getMessage());
+                point.markGeocodingFailed();
+                servicePointRepository.save(point);
+            }
+        }
+
         return toResponse(point, List.of());
     }
 
