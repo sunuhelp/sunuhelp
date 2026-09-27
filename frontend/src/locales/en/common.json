@@ -1,4 +1,5 @@
 {
+  "app_name": "SunuHelp",
   "brand": {
     "title": "Local Search",
     "tagline": "Find anything, in real time, near you"
@@ -24,14 +25,10 @@
     "welcome_back": "Welcome!",
     "logout": "Log out",
     "logout_confirm": "Log out?",
-    "logged_out": "You are logged out"
-  },
-  "account": {
-    "favorites": "My favorites",
-    "add_business": "Add my business"
-  },
-  "common": {
-    "cancel": "Cancel"
+    "logged_out": "You are logged out",
+    "login_tagline": "Glad to see you again",
+    "login_submitting": "Signing in...",
+    "no_account": "No account yet?"
   },
   "footer": {
     "discover": "Discover",
@@ -43,8 +40,14 @@
     "phone_required": "Phone number is required",
     "phone_invalid": "Invalid phone number format",
     "email_invalid": "Invalid email format",
-    "password_too_short": "Password must be at least 8 characters",
-    "otp_invalid": "Code must be 6 digits"
+    "password_too_short": "Minimum 8 characters",
+    "otp_invalid": "Code must be 6 digits",
+    "name_required": "Name is required (min 2 characters)",
+    "description_too_long": "Maximum 500 characters",
+    "address_required": "Address is required",
+    "coverage_zone_required": "Coverage area is required",
+    "password_required": "Password is required",
+    "category_required": "Choose a category"
   },
   "home": {
     "headline": "Find a service near you",
@@ -52,9 +55,18 @@
     "categories_title": "Browse by category",
     "how_it_works_title": "How it works",
     "steps": {
-      "search": { "title": "Search", "description": "Type what you're looking for or pick a category." },
-      "compare": { "title": "Compare", "description": "Check reviews, hours and distance around you." },
-      "contact": { "title": "Contact", "description": "Call directly or get directions in one tap." }
+      "search": {
+        "title": "Search",
+        "description": "Type what you're looking for or pick a category."
+      },
+      "compare": {
+        "title": "Compare",
+        "description": "Check reviews, hours and distance around you."
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Call directly or get directions in one tap."
+      }
     }
   },
   "search": {
@@ -70,6 +82,70 @@
   "errors": {
     "generic": "Something went wrong. Try again.",
     "network": "No internet connection",
-    "phone_already_exists": "This number is already in use"
+    "phone_already_exists": "This number is already in use",
+    "invalid_credentials": "Incorrect phone number or password"
+  },
+  "account": {
+    "favorites": "My favorites",
+    "add_business": "Add my business",
+    "my_businesses": "My businesses"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "next": "Continue",
+    "back": "Back",
+    "change": "Change",
+    "skip": "Skip"
+  },
+  "add_business": {
+    "title": "Add my business",
+    "subtitle": "A few details to publish your listing",
+    "step_category": "Category",
+    "step_info": "Information",
+    "step_location": "Location",
+    "step_review": "Confirmation",
+    "pick_category": "Category",
+    "search_category_placeholder": "Search a category...",
+    "no_category_found": "No category found",
+    "category_hint": "Choose a category to continue",
+    "person_type_label": "You are",
+    "individual": "Individual entrepreneur",
+    "individual_desc": "You run your activity on your own",
+    "legal_entity": "Company",
+    "legal_entity_desc": "Company, association or organization",
+    "name_label": "Business name",
+    "description_label": "Description (optional)",
+    "location_type_label": "Service point type",
+    "physical": "Physical address",
+    "physical_desc": "A place where you welcome customers",
+    "online": "Online service",
+    "online_desc": "Delivery, coverage area",
+    "address_label": "Address",
+    "address_placeholder": "Street, district, city",
+    "coverage_zone_label": "Coverage area",
+    "coverage_zone_placeholder": "E.g. Dakar and surroundings",
+    "phone_label": "Phone (optional)",
+    "review_title": "Review your information",
+    "review_hint": "Click a section to edit it",
+    "confirm_create": "Publish my listing",
+    "creating": "Publishing...",
+    "created_success": "Your listing has been published!",
+    "created_title": "Listing published!",
+    "created_subtitle": "\"{{name}}\" is now visible in search results.",
+    "verification_prompt_title": "Get the Verified badge",
+    "verification_prompt_body": "Add a supporting document from your dashboard to build customer trust.",
+    "back_to_home": "Back to home",
+    "q_person_type": "You represent",
+    "q_name": "What's your business called?",
+    "q_description": "Describe it in a few words",
+    "q_category": "What field do you operate in?",
+    "q_location_type": "How can customers find you?",
+    "q_address": "What is your address?",
+    "q_coverage_zone": "What is your coverage area?",
+    "q_phone": "A number to reach you?",
+    "name_placeholder": "E.g. Pharmacie de la Paix",
+    "description_placeholder": "What makes you unique...",
+    "optional_hint": "Optional",
+    "verification_prompt_body_soon": "This feature will soon be available from your dashboard."
   }
 }

@@ -1,5 +1,6 @@
 package com.sunuhelp.entity.service.impl;
 
+import com.sunuhelp.common.dto.PageResponse;
 import com.sunuhelp.entity.dto.request.CreateEntityRequest;
 import com.sunuhelp.entity.dto.request.EntityTranslationRequest;
 import com.sunuhelp.entity.dto.request.UpdateEntityRequest;
@@ -18,6 +19,8 @@ import com.sunuhelp.entity.repository.BusinessEntityRepository;
 import com.sunuhelp.entity.repository.EntityCategoryRepository;
 import com.sunuhelp.entity.repository.EntityTranslationRepository;
 import com.sunuhelp.entity.service.EntityService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -99,6 +102,13 @@ public class EntityServiceImpl implements EntityService {
         BusinessEntity entity = entityRepository.findById(entityId).orElseThrow(EntityNotFoundException::new);
         UUID categoryId = primaryCategoryId(entityId);
         return toResponse(entity, categoryId, locale);
+    }
+
+    @Override
+    public PageResponse<EntityResponse> findByOwner(UUID ownerAccountId, String locale, Pageable pageable) {
+        Page<EntityResponse> page = entityRepository.findByOwnerAccountIdAndActiveTrue(ownerAccountId, pageable)
+                .map(entity -> toResponse(entity, primaryCategoryId(entity.getId()), locale));
+        return PageResponse.from(page);
     }
 
     @Override

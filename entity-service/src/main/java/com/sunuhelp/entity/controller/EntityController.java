@@ -1,5 +1,6 @@
 package com.sunuhelp.entity.controller;
 
+import com.sunuhelp.common.dto.PageResponse;
 import com.sunuhelp.entity.dto.request.CreateEntityRequest;
 import com.sunuhelp.entity.dto.request.UpdateEntityRequest;
 import com.sunuhelp.entity.dto.response.EntityResponse;
@@ -7,6 +8,7 @@ import com.sunuhelp.entity.service.EntityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -33,6 +35,18 @@ public class EntityController {
         UUID ownerId = (UUID) authentication.getPrincipal();
         EntityResponse response = entityService.create(request, ownerId, locale.getLanguage());
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    /**
+     * Placee AVANT /{id} - sinon Spring interpreterait "mine" comme une
+     * tentative d'UUID pour findById, piege classique de routing.
+     */
+    @GetMapping("/mine")
+    @Operation(summary = "Liste les fiches actives du compte connecte")
+    public ResponseEntity<PageResponse<EntityResponse>> findMine(Authentication authentication, Locale locale,
+                                                                    Pageable pageable) {
+        UUID ownerId = (UUID) authentication.getPrincipal();
+        return ResponseEntity.ok(entityService.findByOwner(ownerId, locale.getLanguage(), pageable));
     }
 
     @PutMapping("/{id}")

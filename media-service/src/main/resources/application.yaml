@@ -6,7 +6,7 @@ spring:
     name: media-service
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5439/media_db}
-    username: sunuhelp
+    username: ${DB_USERNAME:sunuhelp}
     password: ${DB_PASSWORD:sunuhelp_dev_password}
     driver-class-name: org.postgresql.Driver
   jpa:

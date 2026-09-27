@@ -6,7 +6,7 @@ spring:
     name: entity-service
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5435/entity_db}
-    username: sunuhelp
+    username: ${DB_USERNAME:sunuhelp}
     password: ${DB_PASSWORD:sunuhelp_dev_password}
     driver-class-name: org.postgresql.Driver
   jpa:

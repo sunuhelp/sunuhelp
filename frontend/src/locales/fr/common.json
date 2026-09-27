@@ -1,4 +1,5 @@
 {
+  "app_name": "SunuHelp",
   "brand": {
     "title": "Recherche locale",
     "tagline": "Trouvez tout, en temps réel, près de chez vous"
@@ -24,14 +25,10 @@
     "welcome_back": "Bienvenue !",
     "logout": "Se déconnecter",
     "logout_confirm": "Se déconnecter ?",
-    "logged_out": "Vous êtes déconnecté"
-  },
-  "account": {
-    "favorites": "Mes favoris",
-    "add_business": "Ajouter mon commerce"
-  },
-  "common": {
-    "cancel": "Annuler"
+    "logged_out": "Vous êtes déconnecté",
+    "login_tagline": "Content de vous revoir",
+    "login_submitting": "Connexion...",
+    "no_account": "Pas encore de compte ?"
   },
   "footer": {
     "discover": "Découvrir",
@@ -43,8 +40,14 @@
     "phone_required": "Le numéro de téléphone est obligatoire",
     "phone_invalid": "Format de numéro invalide",
     "email_invalid": "Format d'email invalide",
-    "password_too_short": "Le mot de passe doit contenir au moins 8 caractères",
-    "otp_invalid": "Le code doit contenir 6 chiffres"
+    "password_too_short": "8 caractères minimum",
+    "otp_invalid": "Le code doit contenir 6 chiffres",
+    "name_required": "Le nom est obligatoire (2 caractères minimum)",
+    "description_too_long": "500 caractères maximum",
+    "address_required": "L'adresse est obligatoire",
+    "coverage_zone_required": "La zone de couverture est obligatoire",
+    "password_required": "Le mot de passe est obligatoire",
+    "category_required": "Choisissez une catégorie"
   },
   "home": {
     "headline": "Trouvez un service près de chez vous",
@@ -52,9 +55,18 @@
     "categories_title": "Parcourir par catégorie",
     "how_it_works_title": "Comment ça marche",
     "steps": {
-      "search": { "title": "Recherchez", "description": "Tapez ce que vous cherchez ou choisissez une catégorie." },
-      "compare": { "title": "Comparez", "description": "Consultez les avis, horaires et distances autour de vous." },
-      "contact": { "title": "Contactez", "description": "Appelez directement ou obtenez l'itinéraire en un clic." }
+      "search": {
+        "title": "Recherchez",
+        "description": "Tapez ce que vous cherchez ou choisissez une catégorie."
+      },
+      "compare": {
+        "title": "Comparez",
+        "description": "Consultez les avis, horaires et distances autour de vous."
+      },
+      "contact": {
+        "title": "Contactez",
+        "description": "Appelez directement ou obtenez l'itinéraire en un clic."
+      }
     }
   },
   "search": {
@@ -70,6 +82,70 @@
   "errors": {
     "generic": "Une erreur est survenue. Réessayez.",
     "network": "Pas de connexion internet",
-    "phone_already_exists": "Ce numéro est déjà utilisé"
+    "phone_already_exists": "Ce numéro est déjà utilisé",
+    "invalid_credentials": "Numéro ou mot de passe incorrect"
+  },
+  "account": {
+    "favorites": "Mes favoris",
+    "add_business": "Ajouter mon commerce",
+    "my_businesses": "Mes commerces"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "next": "Continuer",
+    "back": "Retour",
+    "change": "Modifier",
+    "skip": "Passer"
+  },
+  "add_business": {
+    "title": "Ajouter mon commerce",
+    "subtitle": "Quelques informations pour publier votre fiche",
+    "step_category": "Catégorie",
+    "step_info": "Informations",
+    "step_location": "Localisation",
+    "step_review": "Confirmation",
+    "pick_category": "Catégorie",
+    "search_category_placeholder": "Rechercher une catégorie...",
+    "no_category_found": "Aucune catégorie trouvée",
+    "category_hint": "Choisissez une catégorie pour continuer",
+    "person_type_label": "Vous êtes",
+    "individual": "Entrepreneur individuel",
+    "individual_desc": "Vous gérez seul votre activité",
+    "legal_entity": "Entreprise",
+    "legal_entity_desc": "Société, association ou organisation",
+    "name_label": "Nom de votre commerce",
+    "description_label": "Description (facultatif)",
+    "location_type_label": "Type de point de service",
+    "physical": "Adresse physique",
+    "physical_desc": "Un lieu où vous accueillez vos clients",
+    "online": "Service en ligne",
+    "online_desc": "Livraison, zone de couverture",
+    "address_label": "Adresse",
+    "address_placeholder": "Rue, quartier, ville",
+    "coverage_zone_label": "Zone de couverture",
+    "coverage_zone_placeholder": "Ex. Dakar et banlieue",
+    "phone_label": "Téléphone (facultatif)",
+    "review_title": "Vérifiez vos informations",
+    "review_hint": "Cliquez sur une section pour la modifier",
+    "confirm_create": "Publier ma fiche",
+    "creating": "Publication...",
+    "created_success": "Votre fiche a été publiée !",
+    "created_title": "Fiche publiée !",
+    "created_subtitle": "\"{{name}}\" est maintenant visible dans les recherches.",
+    "verification_prompt_title": "Obtenez le badge Vérifiée",
+    "verification_prompt_body": "Ajoutez un document justificatif depuis votre tableau de bord pour rassurer vos clients.",
+    "back_to_home": "Retour à l'accueil",
+    "q_person_type": "Vous représentez",
+    "q_name": "Comment s'appelle votre activité ?",
+    "q_description": "Décrivez-la en quelques mots",
+    "q_category": "Dans quel domaine opérez-vous ?",
+    "q_location_type": "Comment vous trouve-t-on ?",
+    "q_address": "Quelle est votre adresse ?",
+    "q_coverage_zone": "Quelle est votre zone de couverture ?",
+    "q_phone": "Un numéro pour vous joindre ?",
+    "name_placeholder": "Ex. Pharmacie de la Paix",
+    "description_placeholder": "Ce qui vous rend unique...",
+    "optional_hint": "Facultatif",
+    "verification_prompt_body_soon": "Cette fonctionnalité sera bientôt disponible depuis votre tableau de bord."
   }
 }

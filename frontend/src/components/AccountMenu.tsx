@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../stores/authStore'
 import { notify } from '../lib/toast'
+import { useMyEntities } from '../hooks/useMyEntities'
 
 /**
  * Remplace S'inscrire/Se connecter une fois authentifie. La deconnexion
@@ -14,6 +15,8 @@ export function AccountMenu() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const logout = useAuthStore((s) => s.logout)
+  const { data: myEntities } = useMyEntities()
+  const hasBusiness = (myEntities?.totalElements ?? 0) > 0
   const [open, setOpen] = useState(false)
   const [confirmingLogout, setConfirmingLogout] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
@@ -66,10 +69,10 @@ export function AccountMenu() {
               </button>
               <button
                 role="menuitem"
-                onClick={() => navigate('/mon-commerce')}
+                onClick={() => navigate(hasBusiness ? '/mes-commerces' : '/mon-commerce')}
                 className="w-full text-left px-3 py-2.5 text-sm hover:bg-[var(--color-surface)] transition-colors"
               >
-                {t('account.add_business')}
+                {hasBusiness ? t('account.my_businesses') : t('account.add_business')}
               </button>
               <div className="border-t border-[var(--color-border)] my-1" />
               <button
