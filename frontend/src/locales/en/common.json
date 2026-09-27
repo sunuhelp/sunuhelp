@@ -88,7 +88,9 @@
   "account": {
     "favorites": "My favorites",
     "add_business": "Add my business",
-    "my_businesses": "My businesses"
+    "my_businesses": "My businesses",
+    "default_label": "My account",
+    "other_businesses_count": "+ {{count}} other business(es)"
   },
   "common": {
     "cancel": "Cancel",
