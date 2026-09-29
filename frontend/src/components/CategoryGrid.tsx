@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { MoreHorizontal } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { useCategories } from '../hooks/useCategories'
-import { Skeleton } from './ui/Skeleton'
 
 export function CategoryGrid() {
   const { t } = useTranslation()
@@ -9,40 +10,38 @@ export function CategoryGrid() {
   const { data: categories, isLoading } = useCategories()
 
   return (
-    <section>
-      <h2 className="font-[var(--font-display)] text-xl font-medium mb-6">
-        {t('home.categories_title')}
-      </h2>
+    <div className="py-10">
+      <p className="text-sm font-medium text-[var(--color-ink-muted)] text-center mb-5">{t('home.categories_title')}</p>
 
       {isLoading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Skeleton key={i} className="h-28" />
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-28 rounded-xl bg-[var(--color-surface)] animate-pulse" />
           ))}
         </div>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {categories?.slice(0, 8).map((cat) => (
-            <button
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+          {categories?.slice(0, 5).map((cat) => (
+            <motion.button
               key={cat.id}
+              whileHover={{ y: -2 }}
               onClick={() => navigate(`/resultats?categorySlug=${cat.slug}`)}
-              className="flex flex-col items-center gap-3 py-6 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] hover:shadow-md hover:-translate-y-0.5 transition-all"
+              className="flex flex-col items-center gap-2.5 py-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-accent)]/40 transition-colors"
             >
               <span className="text-3xl" aria-hidden="true">{cat.icon}</span>
-              <span className="text-sm font-medium">{cat.name}</span>
-            </button>
+              <span className="text-xs">{cat.name}</span>
+            </motion.button>
           ))}
+          <motion.button
+            whileHover={{ y: -2 }}
+            onClick={() => navigate('/categories')}
+            className="flex flex-col items-center gap-2.5 py-6 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-accent)]/40 transition-colors"
+          >
+            <MoreHorizontal size={30} className="text-[var(--color-ink-muted)]" strokeWidth={1.75} aria-hidden="true" />
+            <span className="text-xs">{t('categories.see_more')}</span>
+          </motion.button>
         </div>
       )}
-
-      {categories && categories.length > 8 && (
-        <button
-          onClick={() => navigate('/categories')}
-          className="mt-6 text-sm text-[var(--color-accent)] font-medium"
-        >
-          {t('categories.see_more')}
-        </button>
-      )}
-    </section>
+    </div>
   )
 }

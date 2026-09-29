@@ -10,6 +10,7 @@
 :root {
   --color-bg: #FFFFFF;
   --color-surface: #F6F5F2;
+  --color-surface-2: #FFFFFF;
   --color-ink: #17302C;
   --color-ink-muted: #5B6E69;
   --color-accent: #0F6B62;
@@ -18,11 +19,13 @@
   --color-success: #1E8E5A;
   --color-warning: #B8860B;
   --color-border: #E3E1DA;
+  --color-border-strong: #C9C6BB;
 }
 
 .dark {
   --color-bg: #0F1C1A;
   --color-surface: #16302B;
+  --color-surface-2: #1B3833;
   --color-ink: #EAF3F1;
   --color-ink-muted: #9BB3AE;
   --color-accent: #3FA895;
@@ -31,42 +34,11 @@
   --color-success: #4FC384;
   --color-warning: #E0B23D;
   --color-border: #234943;
+  --color-border-strong: #2F5C54;
 }
 
 body {
   background-color: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans);
-}
-
-/* Curseur de rayon - Tailwind ne peut pas cibler le "thumb" natif,
-   necessite du CSS dedie pour un rendu coherent avec nos tokens de couleur. */
-.sunuhelp-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--color-border);
-  outline: none;
-}
-
-.sunuhelp-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  border: 3px solid var(--color-bg);
-  box-shadow: 0 0 0 1px var(--color-border);
-}
-
-.sunuhelp-slider::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--color-accent);
-  cursor: pointer;
-  border: 3px solid var(--color-bg);
-  box-shadow: 0 0 0 1px var(--color-border);
 }

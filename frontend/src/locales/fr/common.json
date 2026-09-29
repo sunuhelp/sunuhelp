@@ -1,186 +1,59 @@
 {
-  "app_name": "SunuHelp",
   "brand": {
-    "title": "Recherche locale",
-    "tagline": "Trouvez tout, en temps réel, près de chez vous"
+    "tagline": "Trouvez un service près de chez vous, en temps réel"
+  },
+  "nav": {
+    "home": "Accueil",
+    "categories": "Catégories",
+    "how_it_works": "Comment ça marche",
+    "for_business": "Pour les professionnels",
+    "help": "Aide"
   },
   "auth": {
     "login": "Se connecter",
-    "register": "S'inscrire",
-    "phone_label": "Numéro de téléphone",
-    "email_label": "Email (facultatif)",
-    "password_label": "Mot de passe",
-    "register_submit": "S'inscrire",
-    "register_tagline": "Rejoignez-nous en quelques secondes",
-    "already_have_account": "Déjà inscrit ?",
-    "register_submitting": "Inscription...",
-    "register_success": "Compte créé ! Vérifiez votre téléphone.",
-    "otp_title": "Vérification",
-    "otp_subtitle": "Entrez le code à 6 chiffres envoyé au {{phone}}",
-    "otp_verify": "Vérifier",
-    "otp_verifying": "Vérification...",
-    "otp_resend": "Renvoyer le code",
-    "otp_resend_countdown": "Renvoyer dans {{time}}",
-    "otp_resent": "Code renvoyé",
-    "welcome_back": "Bienvenue !",
-    "logout": "Se déconnecter",
-    "logout_confirm": "Se déconnecter ?",
-    "logged_out": "Vous êtes déconnecté",
-    "login_tagline": "Content de vous revoir",
-    "login_submitting": "Connexion...",
-    "no_account": "Pas encore de compte ?"
+    "register": "S'inscrire"
+  },
+  "theme": {
+    "label": "Thème",
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "home": {
+    "headline": "Trouvez un service près de chez vous, en temps réel",
+    "subheadline": "Pharmacies de garde, artisans disponibles, commerces ouverts maintenant : tout est à jour et vérifié par la communauté. Cherchez, comparez, contactez, en quelques secondes.",
+    "search_hint": "Recherche libre, aucune inscription requise.",
+    "preview_name": "Pharmacie de la Paix",
+    "preview_distance": "300 m",
+    "preview_status": "Ouvert",
+    "benefits": {
+      "fresh_title": "Toujours à jour",
+      "fresh_body": "Horaires et statut mis à jour en direct",
+      "trust_title": "Vérifié par la communauté",
+      "trust_body": "Avis et badges de confiance réels",
+      "coverage_title": "Tous les domaines",
+      "coverage_body": "De la santé à l'artisanat, sans exception",
+      "free_title": "100% gratuit",
+      "free_body": "Aucun frais, aucun engagement"
+    },
+    "categories_title": "Parcourir par catégorie",
+    "cta_title": "Vous gérez un établissement ?",
+    "cta_body": "Publiez votre fiche gratuitement en quelques minutes.",
+    "cta_button": "Ajouter mon établissement"
+  },
+  "categories": {
+    "see_more": "Voir plus"
+  },
+  "search": {
+    "placeholder": "Que cherchez-vous ?",
+    "submit": "Rechercher"
   },
   "footer": {
     "discover": "Découvrir",
-    "home": "Accueil",
-    "categories": "Catégories",
     "account": "Compte"
-  },
-  "validation": {
-    "phone_required": "Le numéro de téléphone est obligatoire",
-    "phone_invalid": "Format de numéro invalide",
-    "email_invalid": "Format d'email invalide",
-    "password_too_short": "8 caractères minimum",
-    "otp_invalid": "Le code doit contenir 6 chiffres",
-    "name_required": "Le nom est obligatoire (2 caractères minimum)",
-    "description_too_long": "500 caractères maximum",
-    "address_required": "L'adresse est obligatoire",
-    "coverage_zone_required": "La zone de couverture est obligatoire",
-    "password_required": "Le mot de passe est obligatoire",
-    "category_required": "Choisissez une catégorie"
-  },
-  "home": {
-    "headline": "Trouvez un service près de chez vous",
-    "subheadline": "Pharmacies, artisans, commerces et bien plus, à Dakar et partout au Sénégal.",
-    "categories_title": "Parcourir par catégorie",
-    "how_it_works_title": "Comment ça marche",
-    "steps": {
-      "search": {
-        "title": "Recherchez",
-        "description": "Tapez ce que vous cherchez ou choisissez une catégorie."
-      },
-      "compare": {
-        "title": "Comparez",
-        "description": "Consultez les avis, horaires et distances autour de vous."
-      },
-      "contact": {
-        "title": "Contactez",
-        "description": "Appelez directement ou obtenez l'itinéraire en un clic."
-      }
-    }
-  },
-  "search": {
-    "placeholder": "KFC, pharmacie, bijouterie...",
-    "submit": "Rechercher",
-    "radius": "Rayon",
-    "location_detected": "Position détectée",
-    "location_denied": "Votre position approximative"
-  },
-  "categories": {
-    "see_more": "Voir plus de catégories"
   },
   "errors": {
     "generic": "Une erreur est survenue. Réessayez.",
-    "network": "Pas de connexion internet",
-    "phone_already_exists": "Ce numéro est déjà utilisé",
-    "invalid_credentials": "Numéro ou mot de passe incorrect"
-  },
-  "account": {
-    "favorites": "Mes favoris",
-    "add_business": "Ajouter mon commerce",
-    "my_businesses": "Mes commerces",
-    "default_label": "Mon compte",
-    "other_businesses_count": "+ {{count}} autre(s) commerce(s)"
-  },
-  "common": {
-    "cancel": "Annuler",
-    "next": "Continuer",
-    "back": "Retour",
-    "change": "Modifier",
-    "skip": "Passer"
-  },
-  "add_business": {
-    "title": "Ajouter mon commerce",
-    "subtitle": "Quelques informations pour publier votre fiche",
-    "step_category": "Catégorie",
-    "step_info": "Informations",
-    "step_location": "Localisation",
-    "step_review": "Confirmation",
-    "pick_category": "Catégorie",
-    "search_category_placeholder": "Rechercher une catégorie...",
-    "no_category_found": "Aucune catégorie trouvée",
-    "category_hint": "Choisissez une catégorie pour continuer",
-    "person_type_label": "Vous êtes",
-    "individual": "Entrepreneur individuel",
-    "individual_desc": "Vous gérez seul votre activité",
-    "legal_entity": "Entreprise",
-    "legal_entity_desc": "Société, association ou organisation",
-    "name_label": "Nom de votre commerce",
-    "description_label": "Description (facultatif)",
-    "location_type_label": "Type de point de service",
-    "physical": "Adresse physique",
-    "physical_desc": "Un lieu où vous accueillez vos clients",
-    "online": "Service en ligne",
-    "online_desc": "Livraison, zone de couverture",
-    "address_label": "Adresse",
-    "address_placeholder": "Rue, quartier, ville",
-    "coverage_zone_label": "Zone de couverture",
-    "coverage_zone_placeholder": "Ex. Dakar et banlieue",
-    "phone_label": "Téléphone (facultatif)",
-    "review_title": "Vérifiez vos informations",
-    "review_hint": "Cliquez sur une section pour la modifier",
-    "confirm_create": "Publier ma fiche",
-    "creating": "Publication...",
-    "created_success": "Votre fiche a été publiée !",
-    "created_title": "Fiche publiée !",
-    "created_subtitle": "\"{{name}}\" est maintenant visible dans les recherches.",
-    "verification_prompt_title": "Obtenez le badge Vérifiée",
-    "verification_prompt_body": "Ajoutez un document justificatif depuis votre tableau de bord pour rassurer vos clients.",
-    "back_to_home": "Retour à l'accueil",
-    "q_person_type": "Vous représentez",
-    "q_name": "Comment s'appelle votre activité ?",
-    "q_description": "Décrivez-la en quelques mots",
-    "q_category": "Dans quel domaine opérez-vous ?",
-    "q_location_type": "Comment vous trouve-t-on ?",
-    "q_address": "Quelle est votre adresse ?",
-    "q_coverage_zone": "Quelle est votre zone de couverture ?",
-    "q_phone": "Un numéro pour vous joindre ?",
-    "name_placeholder": "Ex. Pharmacie de la Paix",
-    "description_placeholder": "Ce qui vous rend unique...",
-    "optional_hint": "Facultatif",
-    "verification_prompt_body_soon": "Cette fonctionnalité sera bientôt disponible depuis votre tableau de bord."
-  },
-  "entity": {
-    "verified": "Vérifiée",
-    "open_now": "Ouvert",
-    "open_until": "Ouvert · ferme à {{time}}",
-    "closed_now": "Fermé",
-    "reviews_count": "avis",
-    "see_hours": "Voir les horaires",
-    "day_closed": "Fermé",
-    "call": "Appeler",
-    "reviews_title": "Avis",
-    "no_reviews": "Aucun avis pour le moment.",
-    "day_mon": "Lundi",
-    "day_tue": "Mardi",
-    "day_wed": "Mercredi",
-    "day_thu": "Jeudi",
-    "day_fri": "Vendredi",
-    "day_sat": "Samedi",
-    "day_sun": "Dimanche",
-    "hours_unknown": "Horaires non renseignés",
-    "no_hours_set": "Aucun horaire renseigné pour le moment.",
-    "owner_banner_title": "C'est votre fiche !",
-    "owner_banner_body": "Ajoutez vos horaires, photos et documents depuis votre tableau de bord (bientôt disponible)."
-  },
-  "results": {
-    "title_query": "Résultats pour \"{{query}}\"",
-    "title_category": "Résultats",
-    "filters": "Filtres",
-    "location_denied_hint": "Résultats triés par pertinence (position non partagée)",
-    "empty_title": "Aucun résultat dans un rayon de {{radius}} km",
-    "empty_body": "Essayez d'élargir la zone ou une autre recherche.",
-    "expand_radius": "Chercher dans {{radius}} km",
-    "show_results": "Afficher {{count}} résultats"
+    "network": "Pas de connexion internet"
   }
 }

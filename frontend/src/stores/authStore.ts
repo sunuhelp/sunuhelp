@@ -23,6 +23,6 @@ export const useAuthStore = create<AuthState>()(
       },
       logout: () => set({ accessToken: null, refreshToken: null, accountId: null, role: null }),
     }),
-    { name: 'sunuhelp_auth' }
+    { name: 'app_auth' }
   )
 )

@@ -1,186 +1,59 @@
 {
-  "app_name": "SunuHelp",
   "brand": {
-    "title": "Local Search",
-    "tagline": "Find anything, in real time, near you"
+    "tagline": "Find a service near you, in real time"
+  },
+  "nav": {
+    "home": "Home",
+    "categories": "Categories",
+    "how_it_works": "How it works",
+    "for_business": "For businesses",
+    "help": "Help"
   },
   "auth": {
     "login": "Log in",
-    "register": "Sign up",
-    "phone_label": "Phone number",
-    "email_label": "Email (optional)",
-    "password_label": "Password",
-    "register_submit": "Sign up",
-    "register_tagline": "Join us in seconds",
-    "already_have_account": "Already have an account?",
-    "register_submitting": "Signing up...",
-    "register_success": "Account created! Check your phone.",
-    "otp_title": "Verification",
-    "otp_subtitle": "Enter the 6-digit code sent to {{phone}}",
-    "otp_verify": "Verify",
-    "otp_verifying": "Verifying...",
-    "otp_resend": "Resend code",
-    "otp_resend_countdown": "Resend in {{time}}",
-    "otp_resent": "Code resent",
-    "welcome_back": "Welcome!",
-    "logout": "Log out",
-    "logout_confirm": "Log out?",
-    "logged_out": "You are logged out",
-    "login_tagline": "Glad to see you again",
-    "login_submitting": "Signing in...",
-    "no_account": "No account yet?"
+    "register": "Sign up"
+  },
+  "theme": {
+    "label": "Theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "home": {
+    "headline": "Find a service near you, in real time",
+    "subheadline": "Emergency pharmacies, available craftsmen, shops open right now: everything is up to date and verified by the community. Search, compare, contact, in seconds.",
+    "search_hint": "Free search, no account required.",
+    "preview_name": "Pharmacie de la Paix",
+    "preview_distance": "300 m",
+    "preview_status": "Open",
+    "benefits": {
+      "fresh_title": "Always up to date",
+      "fresh_body": "Hours and status updated live",
+      "trust_title": "Verified by the community",
+      "trust_body": "Real reviews and trust badges",
+      "coverage_title": "Every field",
+      "coverage_body": "From healthcare to craftsmanship",
+      "free_title": "100% free",
+      "free_body": "No fees, no commitment"
+    },
+    "categories_title": "Browse by category",
+    "cta_title": "Do you run a business?",
+    "cta_body": "Publish your listing for free in minutes.",
+    "cta_button": "Add my business"
+  },
+  "categories": {
+    "see_more": "See more"
+  },
+  "search": {
+    "placeholder": "What are you looking for?",
+    "submit": "Search"
   },
   "footer": {
     "discover": "Discover",
-    "home": "Home",
-    "categories": "Categories",
     "account": "Account"
-  },
-  "validation": {
-    "phone_required": "Phone number is required",
-    "phone_invalid": "Invalid phone number format",
-    "email_invalid": "Invalid email format",
-    "password_too_short": "Minimum 8 characters",
-    "otp_invalid": "Code must be 6 digits",
-    "name_required": "Name is required (min 2 characters)",
-    "description_too_long": "Maximum 500 characters",
-    "address_required": "Address is required",
-    "coverage_zone_required": "Coverage area is required",
-    "password_required": "Password is required",
-    "category_required": "Choose a category"
-  },
-  "home": {
-    "headline": "Find a service near you",
-    "subheadline": "Pharmacies, craftsmen, shops and more, in Dakar and across Senegal.",
-    "categories_title": "Browse by category",
-    "how_it_works_title": "How it works",
-    "steps": {
-      "search": {
-        "title": "Search",
-        "description": "Type what you're looking for or pick a category."
-      },
-      "compare": {
-        "title": "Compare",
-        "description": "Check reviews, hours and distance around you."
-      },
-      "contact": {
-        "title": "Contact",
-        "description": "Call directly or get directions in one tap."
-      }
-    }
-  },
-  "search": {
-    "placeholder": "KFC, pharmacy, jeweler...",
-    "submit": "Search",
-    "radius": "Radius",
-    "location_detected": "Location detected",
-    "location_denied": "Your approximate location"
-  },
-  "categories": {
-    "see_more": "See more categories"
   },
   "errors": {
     "generic": "Something went wrong. Try again.",
-    "network": "No internet connection",
-    "phone_already_exists": "This number is already in use",
-    "invalid_credentials": "Incorrect phone number or password"
-  },
-  "account": {
-    "favorites": "My favorites",
-    "add_business": "Add my business",
-    "my_businesses": "My businesses",
-    "default_label": "My account",
-    "other_businesses_count": "+ {{count}} other business(es)"
-  },
-  "common": {
-    "cancel": "Cancel",
-    "next": "Continue",
-    "back": "Back",
-    "change": "Change",
-    "skip": "Skip"
-  },
-  "add_business": {
-    "title": "Add my business",
-    "subtitle": "A few details to publish your listing",
-    "step_category": "Category",
-    "step_info": "Information",
-    "step_location": "Location",
-    "step_review": "Confirmation",
-    "pick_category": "Category",
-    "search_category_placeholder": "Search a category...",
-    "no_category_found": "No category found",
-    "category_hint": "Choose a category to continue",
-    "person_type_label": "You are",
-    "individual": "Individual entrepreneur",
-    "individual_desc": "You run your activity on your own",
-    "legal_entity": "Company",
-    "legal_entity_desc": "Company, association or organization",
-    "name_label": "Business name",
-    "description_label": "Description (optional)",
-    "location_type_label": "Service point type",
-    "physical": "Physical address",
-    "physical_desc": "A place where you welcome customers",
-    "online": "Online service",
-    "online_desc": "Delivery, coverage area",
-    "address_label": "Address",
-    "address_placeholder": "Street, district, city",
-    "coverage_zone_label": "Coverage area",
-    "coverage_zone_placeholder": "E.g. Dakar and surroundings",
-    "phone_label": "Phone (optional)",
-    "review_title": "Review your information",
-    "review_hint": "Click a section to edit it",
-    "confirm_create": "Publish my listing",
-    "creating": "Publishing...",
-    "created_success": "Your listing has been published!",
-    "created_title": "Listing published!",
-    "created_subtitle": "\"{{name}}\" is now visible in search results.",
-    "verification_prompt_title": "Get the Verified badge",
-    "verification_prompt_body": "Add a supporting document from your dashboard to build customer trust.",
-    "back_to_home": "Back to home",
-    "q_person_type": "You represent",
-    "q_name": "What's your business called?",
-    "q_description": "Describe it in a few words",
-    "q_category": "What field do you operate in?",
-    "q_location_type": "How can customers find you?",
-    "q_address": "What is your address?",
-    "q_coverage_zone": "What is your coverage area?",
-    "q_phone": "A number to reach you?",
-    "name_placeholder": "E.g. Pharmacie de la Paix",
-    "description_placeholder": "What makes you unique...",
-    "optional_hint": "Optional",
-    "verification_prompt_body_soon": "This feature will soon be available from your dashboard."
-  },
-  "entity": {
-    "verified": "Verified",
-    "open_now": "Open",
-    "open_until": "Open · closes at {{time}}",
-    "closed_now": "Closed",
-    "reviews_count": "reviews",
-    "see_hours": "See hours",
-    "day_closed": "Closed",
-    "call": "Call",
-    "reviews_title": "Reviews",
-    "no_reviews": "No reviews yet.",
-    "day_mon": "Monday",
-    "day_tue": "Tuesday",
-    "day_wed": "Wednesday",
-    "day_thu": "Thursday",
-    "day_fri": "Friday",
-    "day_sat": "Saturday",
-    "day_sun": "Sunday",
-    "hours_unknown": "Hours not provided",
-    "no_hours_set": "No hours set yet.",
-    "owner_banner_title": "This is your listing!",
-    "owner_banner_body": "Add your hours, photos and documents from your dashboard (coming soon)."
-  },
-  "results": {
-    "title_query": "Results for \"{{query}}\"",
-    "title_category": "Results",
-    "filters": "Filters",
-    "location_denied_hint": "Results sorted by relevance (location not shared)",
-    "empty_title": "No results within {{radius}} km",
-    "empty_body": "Try widening the area or a different search.",
-    "expand_radius": "Search within {{radius}} km",
-    "show_results": "Show {{count}} results"
+    "network": "No internet connection"
   }
 }

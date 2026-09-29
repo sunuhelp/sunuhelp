@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { SearchBar } from '../components/SearchBar'
-import { CategoryGrid } from '../components/CategoryGrid'
-import { HowItWorks } from '../components/HowItWorks'
+import { motion } from 'framer-motion'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
+import { SearchBar } from '../components/SearchBar'
+import { MapIllustration } from '../components/MapIllustration'
+import { BenefitsRow } from '../components/BenefitsRow'
+import { CategoryGrid } from '../components/CategoryGrid'
+import { CtaBand } from '../components/CtaBand'
 
 export default function HomePage() {
   const { t } = useTranslation()
@@ -12,27 +15,32 @@ export default function HomePage() {
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] flex flex-col">
       <Header />
 
-      <div className="relative overflow-hidden bg-[var(--color-surface)] border-b border-[var(--color-border)]">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full opacity-[0.07] pointer-events-none" style={{ background: 'var(--color-accent)' }} />
-        <div className="absolute -bottom-32 -left-16 w-80 h-80 rounded-full opacity-[0.06] pointer-events-none" style={{ background: 'var(--color-accent-warm)' }} />
-
-        <main className="relative px-6 pt-14 pb-16 max-w-6xl mx-auto w-full">
-          <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-medium text-center max-w-2xl mx-auto leading-tight">
-            {t('home.headline')}
-          </h1>
-          <p className="text-center text-[var(--color-ink-muted)] mt-3 max-w-xl mx-auto">
-            {t('home.subheadline')}
-          </p>
-          <div className="mt-8">
+      <main className="flex-1">
+        <div className="max-w-6xl mx-auto px-7 py-14 grid lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            <h1 className="font-[var(--font-display)] text-3xl sm:text-4xl font-medium leading-tight mb-4">
+              {t('home.headline')}
+            </h1>
+            <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed max-w-[420px] mb-6">
+              {t('home.subheadline')}
+            </p>
             <SearchBar />
-          </div>
-        </main>
-      </div>
+          </motion.div>
 
-      <div className="flex-1 max-w-6xl mx-auto w-full px-6 py-14">
-        <CategoryGrid />
-        <HowItWorks />
-      </div>
+          <MapIllustration />
+        </div>
+
+        <div className="max-w-6xl mx-auto px-7">
+          <BenefitsRow />
+          <CategoryGrid />
+        </div>
+
+        <CtaBand />
+      </main>
 
       <Footer />
     </div>
