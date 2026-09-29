@@ -11,7 +11,30 @@
   },
   "auth": {
     "login": "Se connecter",
-    "register": "S'inscrire"
+    "register": "S'inscrire",
+    "phone_label": "Numéro de téléphone",
+    "email_label": "Email (facultatif)",
+    "password_label": "Mot de passe",
+    "digits": "chiffres",
+    "password_requirement": "Au moins 8 caractères",
+    "register_submit": "S'inscrire",
+    "register_tagline": "Rejoignez-nous en quelques secondes",
+    "already_have_account": "Déjà inscrit ?",
+    "register_submitting": "Inscription...",
+    "register_success": "Compte créé ! Vérifiez votre téléphone.",
+    "otp_title": "Vérification",
+    "otp_subtitle": "Entrez le code à 6 chiffres envoyé au {{phone}}",
+    "otp_verify": "Vérifier",
+    "otp_verifying": "Vérification...",
+    "otp_resend": "Renvoyer le code",
+    "otp_resend_countdown": "Renvoyer dans {{time}}",
+    "otp_resent": "Code renvoyé",
+    "welcome_back": "Bienvenue !",
+    "login_submitting": "Connexion...",
+    "no_account": "Pas encore de compte ?",
+    "logout": "Se déconnecter",
+    "logout_confirm": "Se déconnecter ?",
+    "logged_out": "Vous êtes déconnecté"
   },
   "theme": {
     "label": "Thème",
@@ -54,6 +77,21 @@
   },
   "errors": {
     "generic": "Une erreur est survenue. Réessayez.",
-    "network": "Pas de connexion internet"
+    "network": "Pas de connexion internet",
+    "phone_already_exists": "Ce numéro est déjà utilisé",
+    "invalid_credentials": "Numéro ou mot de passe incorrect"
+  },
+  "validation": {
+    "phone_incomplete": "Le numéro doit contenir 9 chiffres",
+    "email_invalid": "Format d'email invalide",
+    "password_too_short": "Au moins 8 caractères requis",
+    "password_required": "Le mot de passe est obligatoire"
+  },
+  "account": {
+    "favorites": "Mes favoris",
+    "my_businesses": "Mes établissements"
+  },
+  "common": {
+    "cancel": "Annuler"
   }
 }

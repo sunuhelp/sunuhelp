@@ -4,6 +4,7 @@ import { Toaster } from 'sonner'
 import { queryClient } from './lib/queryClient'
 import { useTheme } from './hooks/useTheme'
 import HomePage from './pages/HomePage'
+import RegisterPage from './pages/RegisterPage'
 import './lib/i18n'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Toaster richColors position="top-center" />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/inscription" element={<RegisterPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

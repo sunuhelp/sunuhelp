@@ -11,7 +11,30 @@
   },
   "auth": {
     "login": "Log in",
-    "register": "Sign up"
+    "register": "Sign up",
+    "phone_label": "Phone number",
+    "email_label": "Email (optional)",
+    "password_label": "Password",
+    "digits": "digits",
+    "password_requirement": "At least 8 characters",
+    "register_submit": "Sign up",
+    "register_tagline": "Join us in seconds",
+    "already_have_account": "Already have an account?",
+    "register_submitting": "Signing up...",
+    "register_success": "Account created! Check your phone.",
+    "otp_title": "Verification",
+    "otp_subtitle": "Enter the 6-digit code sent to {{phone}}",
+    "otp_verify": "Verify",
+    "otp_verifying": "Verifying...",
+    "otp_resend": "Resend code",
+    "otp_resend_countdown": "Resend in {{time}}",
+    "otp_resent": "Code resent",
+    "welcome_back": "Welcome!",
+    "login_submitting": "Signing in...",
+    "no_account": "No account yet?",
+    "logout": "Log out",
+    "logout_confirm": "Log out?",
+    "logged_out": "You are logged out"
   },
   "theme": {
     "label": "Theme",
@@ -54,6 +77,21 @@
   },
   "errors": {
     "generic": "Something went wrong. Try again.",
-    "network": "No internet connection"
+    "network": "No internet connection",
+    "phone_already_exists": "This number is already in use",
+    "invalid_credentials": "Incorrect phone number or password"
+  },
+  "validation": {
+    "phone_incomplete": "Phone number must contain 9 digits",
+    "email_invalid": "Invalid email format",
+    "password_too_short": "At least 8 characters required",
+    "password_required": "Password is required"
+  },
+  "account": {
+    "favorites": "My favorites",
+    "my_businesses": "My businesses"
+  },
+  "common": {
+    "cancel": "Cancel"
   }
 }
