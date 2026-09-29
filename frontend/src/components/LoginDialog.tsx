@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import { isAxiosError } from 'axios'
 import { Lock, Eye, EyeOff } from 'lucide-react'
 import { login } from '../api/auth'
+import { useNavigate } from 'react-router-dom'
 import { useAuthStore } from '../stores/authStore'
 import { notify } from '../lib/toast'
 import { Dialog } from './Dialog'
@@ -26,6 +27,7 @@ interface LoginDialogProps {
 export function LoginDialog({ open, onClose, onSwitchToRegister }: LoginDialogProps) {
   const { t } = useTranslation()
   const setTokens = useAuthStore((s) => s.setTokens)
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -42,10 +44,11 @@ export function LoginDialog({ open, onClose, onSwitchToRegister }: LoginDialogPr
   const onSubmit = async (data: LoginFormData) => {
     try {
       const tokens = await login(`+221${data.phoneDigits}`, data.password)
-      setTokens(tokens.accessToken, tokens.refreshToken)
+      setTokens(tokens.accessToken, tokens.refreshToken, `+221${data.phoneDigits}`)
       notify.success(t('auth.welcome_back'))
       reset()
       onClose()
+      navigate('/dashboard')
     } catch (err) {
       if (isAxiosError(err) && (err.response?.status === 401 || err.response?.status === 403)) {
         notify.error(t('errors.invalid_credentials'))

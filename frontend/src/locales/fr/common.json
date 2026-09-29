@@ -85,13 +85,60 @@
     "phone_incomplete": "Le numéro doit contenir 9 chiffres",
     "email_invalid": "Format d'email invalide",
     "password_too_short": "Au moins 8 caractères requis",
-    "password_required": "Le mot de passe est obligatoire"
+    "password_required": "Le mot de passe est obligatoire",
+    "name_required": "Le nom est obligatoire (2 caractères minimum)",
+    "address_required": "L'adresse est obligatoire",
+    "coverage_zone_required": "La zone de couverture est obligatoire"
   },
   "account": {
     "favorites": "Mes favoris",
     "my_businesses": "Mes établissements"
   },
   "common": {
-    "cancel": "Annuler"
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "back": "Retour",
+    "next": "Continuer",
+    "skip": "Passer"
+  },
+  "dashboard": {
+    "greeting_night": "Bonsoir",
+    "greeting_day": "Bonjour",
+    "greeting_evening": "Bonsoir",
+    "search_placeholder": "Que cherchez-vous aujourd'hui ?",
+    "recent_searches": "Recherches récentes",
+    "recent_searches_empty": "Vos recherches apparaîtront ici.",
+    "favorites_empty": "Ajoutez des établissements à vos favoris pour les retrouver ici.",
+    "add_business_link": "Vous gérez un établissement ? Ajoutez-le"
+  },
+  "add_business": {
+    "q_person_type": "Vous représentez",
+    "individual": "Entrepreneur individuel",
+    "individual_desc": "Vous gérez seul votre activité",
+    "legal_entity": "Entreprise",
+    "legal_entity_desc": "Société, association ou organisation",
+    "q_name": "Comment s'appelle votre établissement ?",
+    "name_placeholder": "Ex. Pharmacie de la Paix",
+    "q_description": "Décrivez-le en quelques mots",
+    "description_placeholder": "Ce qui vous rend unique...",
+    "optional_hint": "Facultatif",
+    "q_category": "Dans quel domaine opérez-vous ?",
+    "search_category_placeholder": "Rechercher une catégorie...",
+    "no_category_found": "Aucune catégorie trouvée",
+    "q_location_type": "Comment vous trouve-t-on ?",
+    "physical": "Adresse physique",
+    "physical_desc": "Un lieu où vous accueillez vos clients",
+    "online": "Service en ligne",
+    "online_desc": "Livraison, zone de couverture",
+    "q_address": "Quelle est votre adresse ?",
+    "address_placeholder": "Rue, quartier, ville",
+    "q_coverage_zone": "Quelle est votre zone de couverture ?",
+    "coverage_zone_placeholder": "Ex. Dakar et banlieue",
+    "q_phone": "Un numéro pour vous joindre ?",
+    "review_title": "Vérifiez vos informations",
+    "review_hint": "Cliquez sur une étiquette pour la modifier",
+    "confirm_create": "Publier ma fiche",
+    "creating": "Publication...",
+    "created_success": "Votre fiche a été publiée !"
   }
 }

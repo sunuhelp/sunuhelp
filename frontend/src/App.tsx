@@ -5,6 +5,9 @@ import { queryClient } from './lib/queryClient'
 import { useTheme } from './hooks/useTheme'
 import HomePage from './pages/HomePage'
 import RegisterPage from './pages/RegisterPage'
+import DashboardPage from './pages/DashboardPage'
+import AddBusinessPage from './pages/AddBusinessPage'
+import { RequireAuth } from './components/RequireAuth'
 import './lib/i18n'
 
 function App() {
@@ -17,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/inscription" element={<RegisterPage />} />
+          <Route path="/dashboard" element={<RequireAuth><DashboardPage /></RequireAuth>} />
+          <Route path="/mon-etablissement" element={<RequireAuth><AddBusinessPage /></RequireAuth>} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

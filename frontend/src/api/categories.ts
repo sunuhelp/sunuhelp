@@ -11,3 +11,8 @@ export async function fetchRootCategories(): Promise<Category[]> {
   const { data } = await api.get('/api/v1/categories')
   return data
 }
+
+export async function fetchChildren(parentId: string): Promise<Category[]> {
+  const { data } = await api.get(`/api/v1/categories/${parentId}/children`)
+  return data
+}

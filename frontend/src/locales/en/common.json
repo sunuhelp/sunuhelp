@@ -85,13 +85,60 @@
     "phone_incomplete": "Phone number must contain 9 digits",
     "email_invalid": "Invalid email format",
     "password_too_short": "At least 8 characters required",
-    "password_required": "Password is required"
+    "password_required": "Password is required",
+    "name_required": "Name is required (min 2 characters)",
+    "address_required": "Address is required",
+    "coverage_zone_required": "Coverage area is required"
   },
   "account": {
     "favorites": "My favorites",
     "my_businesses": "My businesses"
   },
   "common": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "next": "Continue",
+    "skip": "Skip"
+  },
+  "dashboard": {
+    "greeting_night": "Good evening",
+    "greeting_day": "Hello",
+    "greeting_evening": "Good evening",
+    "search_placeholder": "What are you looking for today?",
+    "recent_searches": "Recent searches",
+    "recent_searches_empty": "Your searches will appear here.",
+    "favorites_empty": "Add businesses to your favorites to find them here.",
+    "add_business_link": "Do you run a business? Add it"
+  },
+  "add_business": {
+    "q_person_type": "You represent",
+    "individual": "Individual entrepreneur",
+    "individual_desc": "You run your activity on your own",
+    "legal_entity": "Company",
+    "legal_entity_desc": "Company, association or organization",
+    "q_name": "What's your business called?",
+    "name_placeholder": "E.g. Pharmacie de la Paix",
+    "q_description": "Describe it in a few words",
+    "description_placeholder": "What makes you unique...",
+    "optional_hint": "Optional",
+    "q_category": "What field do you operate in?",
+    "search_category_placeholder": "Search a category...",
+    "no_category_found": "No category found",
+    "q_location_type": "How can customers find you?",
+    "physical": "Physical address",
+    "physical_desc": "A place where you welcome customers",
+    "online": "Online service",
+    "online_desc": "Delivery, coverage area",
+    "q_address": "What is your address?",
+    "address_placeholder": "Street, district, city",
+    "q_coverage_zone": "What is your coverage area?",
+    "coverage_zone_placeholder": "E.g. Dakar and surroundings",
+    "q_phone": "A number to reach you?",
+    "review_title": "Review your information",
+    "review_hint": "Click a chip to edit it",
+    "confirm_create": "Publish my listing",
+    "creating": "Publishing...",
+    "created_success": "Your listing has been published!"
   }
 }

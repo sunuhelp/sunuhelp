@@ -70,9 +70,9 @@ export default function RegisterPage() {
     try {
       await verifyOtp(fullPhoneNumber, otpCode)
       const tokens = await login(fullPhoneNumber, password)
-      setTokens(tokens.accessToken, tokens.refreshToken)
+      setTokens(tokens.accessToken, tokens.refreshToken, fullPhoneNumber)
       notify.success(t('auth.welcome_back'))
-      navigate('/')
+      navigate('/dashboard')
     } catch {
       setOtpError(true)
       setOtpCode('')
