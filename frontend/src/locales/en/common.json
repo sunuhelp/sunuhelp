@@ -178,7 +178,22 @@
     "completion": "{{count}} of 3 complete",
     "todo_badge": "To do",
     "edit": "Edit",
-    "complete": "Complete"
+    "complete": "Complete",
+    "photos": {
+      "logo_label": "Logo",
+      "logo_hint": "Shown everywhere your listing appears.",
+      "gallery_label": "Gallery",
+      "gallery_hint": "Show your place: front, interior, products.",
+      "invalid_type": "Format not supported (JPEG, PNG or WEBP)",
+      "too_large": "File too large (5 MB max)",
+      "max_reached": "Maximum of {{max}} photos reached",
+      "deleted": "Photo deleted",
+      "replace": "Replace",
+      "add": "Add",
+      "cover_badge": "Cover",
+      "drop_hint": "Drag or click",
+      "see_more": "See more ({{count}} remaining)"
+    }
   },
   "my_businesses": {
     "intro": "Manage your listings: update their hours, track their verification status and add photos to make them more visible in searches.",

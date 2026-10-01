@@ -8,9 +8,12 @@ import { useServicePoints, useOpeningHours } from '../hooks/useServicePoints'
 import { useRootCategorySlug } from '../hooks/useRootCategorySlug'
 import { getCategoryIcon } from '../lib/categoryIcons'
 import { formatHoursSummary } from '../lib/formatHours'
+import { fetchMediaByOwner } from '../api/media'
+import { useQuery } from '@tanstack/react-query'
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 import { HoursDialog } from '../components/HoursDialog'
+import { PhotoThumbnailPreview } from '../components/PhotoThumbnailPreview'
 import { useAuthStore } from '../stores/authStore'
 
 const cardVariants = {
@@ -27,13 +30,19 @@ export default function EntityManagePage() {
   const { data: points } = useServicePoints(id)
   const primaryPoint = points?.[0]
   const { data: existingHours, refetch } = useOpeningHours(primaryPoint?.id)
+  const { data: galleryPhotos } = useQuery({
+    queryKey: ['media', 'gallery', id],
+    queryFn: () => fetchMediaByOwner('ENTITY_PHOTO', id!),
+    enabled: !!id,
+  })
   const setLastEntity = useAuthStore((s) => s.setLastEntity)
 
   const [hoursOpen, setHoursOpen] = useState(false)
   const hasSavedOnce = !!(existingHours && existingHours.length > 0)
+  const hasPhotos = !!(galleryPhotos && galleryPhotos.length > 0)
   const Icon = getCategoryIcon(rootSlug)
   const hoursSummary = existingHours ? formatHoursSummary(existingHours) : []
-  const completedCount = hasSavedOnce ? 1 : 0
+  const completedCount = (hasSavedOnce ? 1 : 0) + (hasPhotos ? 1 : 0)
 
   useEffect(() => {
     if (entity) setLastEntity({ id: entity.id, name: entity.name })
@@ -49,7 +58,7 @@ export default function EntityManagePage() {
     )
   }
 
-  if (!entity) return null
+  if (!entity || !id) return null
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] flex flex-col">
@@ -125,18 +134,52 @@ export default function EntityManagePage() {
             </span>
           </motion.button>
 
-          <motion.div custom={1} initial="hidden" animate="visible" variants={cardVariants} className="p-[18px] rounded-2xl bg-[var(--color-surface)] opacity-60">
+          <motion.button
+            custom={1}
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            whileHover={{ y: -3, boxShadow: '0 8px 20px rgba(15,107,98,0.14)' }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => navigate(`/mes-etablissements/${id}/photos`)}
+            className={`group text-left p-[18px] rounded-2xl bg-[var(--color-surface)] flex flex-col gap-2.5 ${
+              hasPhotos ? 'border-[1.5px] border-[var(--color-accent)]/40' : 'border-[1.5px] border-dashed border-[var(--color-warning)]'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <Image size={22} className={hasPhotos ? 'text-[var(--color-success)]' : 'text-[var(--color-warning)]'} strokeWidth={1.75} aria-hidden="true" />
+              {hasPhotos ? (
+                <CircleCheck size={18} className="text-[var(--color-success)]" strokeWidth={1.75} aria-hidden="true" />
+              ) : (
+                <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-[var(--color-bg)] text-[var(--color-warning)] font-medium">{t('manage.todo_badge')}</span>
+              )}
+            </div>
+            <div>
+              <p className="text-sm font-medium mb-1">{t('manage.photos_title')}</p>
+              {hasPhotos ? (
+                <div className="flex gap-1.5">
+                  {galleryPhotos!.slice(0, 3).map((p) => <PhotoThumbnailPreview key={p.id} mediaId={p.id} />)}
+                  {galleryPhotos!.length > 3 && (
+                    <div className="w-[38px] h-[38px] rounded-lg bg-[var(--color-bg)] flex items-center justify-center text-xs font-medium text-[var(--color-ink-muted)]">
+                      +{galleryPhotos!.length - 3}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <p className="text-xs text-[var(--color-ink-muted)] leading-relaxed">{t('manage.photos_description')}</p>
+              )}
+            </div>
+            <span className={`text-xs font-medium flex items-center gap-1 ${hasPhotos ? 'text-[var(--color-accent)]' : 'text-[var(--color-warning)]'}`}>
+              {hasPhotos ? t('manage.edit') : t('manage.complete')}
+              <ArrowRight size={13} strokeWidth={2} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+            </span>
+          </motion.button>
+
+          <motion.div custom={2} initial="hidden" animate="visible" variants={cardVariants} className="p-[18px] rounded-2xl bg-[var(--color-surface)] opacity-60">
             <ShieldCheck size={22} className="text-[var(--color-ink-muted)] mb-2.5" strokeWidth={1.75} aria-hidden="true" />
             <p className="text-sm font-medium text-[var(--color-ink-muted)] mb-0.5">{t('manage.verification_title')}</p>
             <p className="text-xs text-[var(--color-ink-muted)] mb-2">{t('manage.status_soon')}</p>
             <p className="text-xs text-[var(--color-ink-muted)] leading-relaxed">{t('manage.verification_description')}</p>
-          </motion.div>
-
-          <motion.div custom={2} initial="hidden" animate="visible" variants={cardVariants} className="p-[18px] rounded-2xl bg-[var(--color-surface)] opacity-60">
-            <Image size={22} className="text-[var(--color-ink-muted)] mb-2.5" strokeWidth={1.75} aria-hidden="true" />
-            <p className="text-sm font-medium text-[var(--color-ink-muted)] mb-0.5">{t('manage.photos_title')}</p>
-            <p className="text-xs text-[var(--color-ink-muted)] mb-2">{t('manage.status_soon')}</p>
-            <p className="text-xs text-[var(--color-ink-muted)] leading-relaxed">{t('manage.photos_description')}</p>
           </motion.div>
         </div>
       </main>
@@ -148,6 +191,7 @@ export default function EntityManagePage() {
         existingHours={existingHours}
         onSaved={refetch}
       />
+
 
       <Footer />
     </div>

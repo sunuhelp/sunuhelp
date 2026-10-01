@@ -178,7 +178,22 @@
     "completion": "{{count}} sur 3 complété",
     "todo_badge": "À faire",
     "edit": "Modifier",
-    "complete": "Compléter"
+    "complete": "Compléter",
+    "photos": {
+      "logo_label": "Logo",
+      "logo_hint": "Affiché partout où votre fiche apparaît.",
+      "gallery_label": "Galerie",
+      "gallery_hint": "Montrez votre lieu : façade, intérieur, produits.",
+      "invalid_type": "Format non accepté (JPEG, PNG ou WEBP)",
+      "too_large": "Fichier trop volumineux (5 Mo max)",
+      "max_reached": "Maximum de {{max}} photos atteint",
+      "deleted": "Photo supprimée",
+      "replace": "Remplacer",
+      "add": "Ajouter",
+      "cover_badge": "Principale",
+      "drop_hint": "Glisser ou cliquer",
+      "see_more": "Voir plus ({{count}} restantes)"
+    }
   },
   "my_businesses": {
     "intro": "Gérez les informations de vos fiches : mettez à jour leurs horaires, suivez leur statut de vérification et ajoutez des photos pour les rendre plus visibles dans les recherches.",

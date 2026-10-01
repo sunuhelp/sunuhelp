@@ -15,4 +15,7 @@ public interface MediaFileService {
 
     /** Verifie l'acces (public, ou proprietaire/Admin pour un fichier prive) avant de renvoyer les octets. */
     byte[] download(UUID mediaFileId, UUID requesterAccountId, boolean isAdmin);
+
+    /** Desactive logiquement (active=false) - ne supprime jamais le fichier physique, coherent avec le reste du projet. */
+    void delete(UUID mediaFileId, UUID requesterAccountId, boolean isAdmin);
 }

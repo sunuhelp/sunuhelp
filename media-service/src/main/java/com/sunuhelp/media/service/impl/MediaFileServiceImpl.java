@@ -84,6 +84,19 @@ public class MediaFileServiceImpl implements MediaFileService {
         return storageClient.read(mediaFile.getFileUrl());
     }
 
+    @Override
+    public void delete(UUID mediaFileId, UUID requesterAccountId, boolean isAdmin) {
+        MediaFile mediaFile = mediaFileRepository.findById(mediaFileId)
+                .orElseThrow(FileNotFoundBusinessException::new);
+
+        if (!isAdmin && !mediaFile.getUploadedByAccountId().equals(requesterAccountId)) {
+            throw new FileAccessDeniedException();
+        }
+
+        mediaFile.softDelete();
+        mediaFileRepository.save(mediaFile);
+    }
+
     private MediaFileResponse toResponse(MediaFile file, String actualFileUrl) {
         return MediaFileResponse.builder()
                 .id(file.getId())

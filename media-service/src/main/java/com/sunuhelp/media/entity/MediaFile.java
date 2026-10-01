@@ -104,6 +104,7 @@ public class MediaFile extends BaseEntity {
     }
 
     /** Un document prive necessite une URL signee/temporaire, jamais un lien direct permanent. */
+
     public boolean requiresSignedUrl() {
         return !isPublic;
     }

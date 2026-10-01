@@ -53,4 +53,13 @@ public class MediaFileController {
         byte[] content = mediaFileService.download(id, requesterId, isAdmin);
         return ResponseEntity.ok().body(content);
     }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Supprime un fichier (suppression logique) - proprietaire ou Admin uniquement")
+    public ResponseEntity<Void> delete(@PathVariable UUID id, Authentication authentication) {
+        UUID requesterId = (UUID) authentication.getPrincipal();
+        boolean isAdmin = authentication.getAuthorities().contains(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        mediaFileService.delete(id, requesterId, isAdmin);
+        return ResponseEntity.noContent().build();
+    }
 }
