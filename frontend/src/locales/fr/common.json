@@ -7,7 +7,8 @@
     "categories": "Catégories",
     "how_it_works": "Comment ça marche",
     "for_business": "Pour les professionnels",
-    "help": "Aide"
+    "help": "Aide",
+    "dashboard": "Tableau de bord"
   },
   "auth": {
     "login": "Se connecter",
@@ -99,17 +100,26 @@
     "close": "Fermer",
     "back": "Retour",
     "next": "Continuer",
-    "skip": "Passer"
+    "skip": "Passer",
+    "back_to_dashboard": "Retour au tableau de bord",
+    "apply": "Appliquer"
   },
   "dashboard": {
     "greeting_night": "Bonsoir",
     "greeting_day": "Bonjour",
     "greeting_evening": "Bonsoir",
-    "search_placeholder": "Que cherchez-vous aujourd'hui ?",
+    "search_placeholder": "Rechercher un service près de vous",
     "recent_searches": "Recherches récentes",
     "recent_searches_empty": "Vos recherches apparaîtront ici.",
     "favorites_empty": "Ajoutez des établissements à vos favoris pour les retrouver ici.",
-    "add_business_link": "Vous gérez un établissement ? Ajoutez-le"
+    "add_business_link": "Vous gérez un établissement ? Ajoutez-le",
+    "resume_hint": "Continuez à configurer",
+    "greeting": "Bonjour",
+    "subtitle": "Que voulez-vous faire aujourd'hui ?",
+    "entity_count_one": "Vous gérez {{count}} établissement",
+    "entity_count_other": "Vous gérez {{count}} établissements",
+    "see_all": "Voir tout",
+    "entity_count": "Vous gérez {{count}} établissement"
   },
   "add_business": {
     "q_person_type": "Vous représentez",
@@ -140,5 +150,53 @@
     "confirm_create": "Publier ma fiche",
     "creating": "Publication...",
     "created_success": "Votre fiche a été publiée !"
+  },
+  "manage": {
+    "private_label": "Espace de gestion privé",
+    "view_public": "Voir la fiche publique",
+    "hours_title": "Horaires",
+    "verification_title": "Vérification",
+    "photos_title": "Photos",
+    "status_done": "Renseignés",
+    "status_todo": "À renseigner",
+    "status_soon": "Bientôt disponible",
+    "no_service_point": "Aucun point de service trouvé.",
+    "save": "Enregistrer les horaires",
+    "saving": "Enregistrement...",
+    "hours_saved": "Horaires mis à jour",
+    "intro": "Cette page vous permet de compléter votre fiche pour qu'elle soit plus utile et plus visible dans les recherches.",
+    "tab_overview": "Aperçu",
+    "tab_hours": "Horaires",
+    "tab_verification": "Vérification",
+    "tab_photos": "Photos",
+    "hours_description": "Indiquez vos jours et heures d'ouverture pour que les visiteurs sachent si vous êtes ouvert maintenant.",
+    "verification_description": "Le badge Vérifiée rassure vos visiteurs. Vous pourrez bientôt téléverser un document officiel pour l'obtenir.",
+    "photos_description": "Une fiche avec photos attire davantage l'attention. Cette fonctionnalité arrive prochainement.",
+    "copy_to_all": "Appliquer à tous les jours",
+    "apply_this_time": "Appliquer cette heure à tous les jours",
+    "apply_to_which_days": "Appliquer à quels jours ?",
+    "completion": "{{count}} sur 3 complété",
+    "todo_badge": "À faire",
+    "edit": "Modifier",
+    "complete": "Compléter"
+  },
+  "my_businesses": {
+    "intro": "Gérez les informations de vos fiches : mettez à jour leurs horaires, suivez leur statut de vérification et ajoutez des photos pour les rendre plus visibles dans les recherches.",
+    "hours_set": "Horaires à jour",
+    "hours_missing": "Horaires à renseigner",
+    "not_verified": "Non vérifiée",
+    "manage": "Gérer",
+    "add_another": "Ajouter un autre établissement",
+    "empty": "Vous n'avez pas encore d'établissement."
+  },
+  "entity": {
+    "day_mon": "Lundi",
+    "day_tue": "Mardi",
+    "day_wed": "Mercredi",
+    "day_thu": "Jeudi",
+    "day_fri": "Vendredi",
+    "day_sat": "Samedi",
+    "day_sun": "Dimanche",
+    "day_closed": "Fermé"
   }
 }

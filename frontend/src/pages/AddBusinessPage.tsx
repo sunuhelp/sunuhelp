@@ -10,6 +10,8 @@ import { CategoryStep } from '../components/CategoryStep'
 import { PersonTypeCard } from '../components/PersonTypeCard'
 import { PhoneInput } from '../components/PhoneInput'
 import { notify } from '../lib/toast'
+import { Header } from '../components/Header'
+import { Footer } from '../components/Footer'
 
 type PersonType = 'INDIVIDUAL' | 'LEGAL_ENTITY'
 type LocationType = 'PHYSICAL' | 'ONLINE'
@@ -92,7 +94,7 @@ export default function AddBusinessPage() {
       })
       await queryClient.invalidateQueries({ queryKey: ['entities', 'mine'] })
       notify.success(t('add_business.created_success'))
-      navigate(`/etablissements/${entity.id}`)
+      navigate(`/mes-etablissements/${entity.id}`)
     } catch {
       notify.error(t('errors.generic'))
     } finally {
@@ -115,7 +117,8 @@ export default function AddBusinessPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)]">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-ink)] flex flex-col">
+      <Header />
       <div className="max-w-lg mx-auto px-6 pt-5">
         <div className="flex items-center justify-between mb-4">
           <div className="w-7 h-7 rounded-md bg-[var(--color-accent)]" />
@@ -287,6 +290,7 @@ export default function AddBusinessPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }

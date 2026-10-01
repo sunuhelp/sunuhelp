@@ -7,7 +7,8 @@
     "categories": "Categories",
     "how_it_works": "How it works",
     "for_business": "For businesses",
-    "help": "Help"
+    "help": "Help",
+    "dashboard": "Dashboard"
   },
   "auth": {
     "login": "Log in",
@@ -99,17 +100,26 @@
     "close": "Close",
     "back": "Back",
     "next": "Continue",
-    "skip": "Skip"
+    "skip": "Skip",
+    "back_to_dashboard": "Back to dashboard",
+    "apply": "Apply"
   },
   "dashboard": {
     "greeting_night": "Good evening",
     "greeting_day": "Hello",
     "greeting_evening": "Good evening",
-    "search_placeholder": "What are you looking for today?",
+    "search_placeholder": "Search for a service near you",
     "recent_searches": "Recent searches",
     "recent_searches_empty": "Your searches will appear here.",
     "favorites_empty": "Add businesses to your favorites to find them here.",
-    "add_business_link": "Do you run a business? Add it"
+    "add_business_link": "Do you run a business? Add it",
+    "resume_hint": "Continue setting up",
+    "greeting": "Hello",
+    "subtitle": "What would you like to do today?",
+    "entity_count_one": "You manage {{count}} business",
+    "entity_count_other": "You manage {{count}} businesses",
+    "see_all": "See all",
+    "entity_count": "You manage {{count}} business"
   },
   "add_business": {
     "q_person_type": "You represent",
@@ -140,5 +150,53 @@
     "confirm_create": "Publish my listing",
     "creating": "Publishing...",
     "created_success": "Your listing has been published!"
+  },
+  "manage": {
+    "private_label": "Private management space",
+    "view_public": "View public listing",
+    "hours_title": "Hours",
+    "verification_title": "Verification",
+    "photos_title": "Photos",
+    "status_done": "Set",
+    "status_todo": "To set",
+    "status_soon": "Coming soon",
+    "no_service_point": "No service point found.",
+    "save": "Save hours",
+    "saving": "Saving...",
+    "hours_saved": "Hours updated",
+    "intro": "This page lets you complete your listing to make it more useful and visible in searches.",
+    "tab_overview": "Overview",
+    "tab_hours": "Hours",
+    "tab_verification": "Verification",
+    "tab_photos": "Photos",
+    "hours_description": "Set your opening days and hours so visitors know if you are open right now.",
+    "verification_description": "The Verified badge reassures your visitors. You will soon be able to upload an official document to get it.",
+    "photos_description": "A listing with photos attracts more attention. This feature is coming soon.",
+    "copy_to_all": "Apply to all days",
+    "apply_this_time": "Apply this time to all days",
+    "apply_to_which_days": "Apply to which days?",
+    "completion": "{{count}} of 3 complete",
+    "todo_badge": "To do",
+    "edit": "Edit",
+    "complete": "Complete"
+  },
+  "my_businesses": {
+    "intro": "Manage your listings: update their hours, track their verification status and add photos to make them more visible in searches.",
+    "hours_set": "Hours up to date",
+    "hours_missing": "Hours missing",
+    "not_verified": "Not verified",
+    "manage": "Manage",
+    "add_another": "Add another business",
+    "empty": "You don't have a business yet."
+  },
+  "entity": {
+    "day_mon": "Monday",
+    "day_tue": "Tuesday",
+    "day_wed": "Wednesday",
+    "day_thu": "Thursday",
+    "day_fri": "Friday",
+    "day_sat": "Saturday",
+    "day_sun": "Sunday",
+    "day_closed": "Closed"
   }
 }

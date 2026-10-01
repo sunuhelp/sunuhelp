@@ -28,6 +28,8 @@ export function LoginDialog({ open, onClose, onSwitchToRegister }: LoginDialogPr
   const { t } = useTranslation()
   const setTokens = useAuthStore((s) => s.setTokens)
   const navigate = useNavigate()
+  const pendingRedirect = useAuthStore((s) => s.pendingRedirect)
+  const setPendingRedirect = useAuthStore((s) => s.setPendingRedirect)
   const [showPassword, setShowPassword] = useState(false)
 
   const {
@@ -48,7 +50,12 @@ export function LoginDialog({ open, onClose, onSwitchToRegister }: LoginDialogPr
       notify.success(t('auth.welcome_back'))
       reset()
       onClose()
-      navigate('/dashboard')
+      if (pendingRedirect) {
+        navigate(pendingRedirect)
+        setPendingRedirect(null)
+      } else {
+        navigate("/dashboard")
+      }
     } catch (err) {
       if (isAxiosError(err) && (err.response?.status === 401 || err.response?.status === 403)) {
         notify.error(t('errors.invalid_credentials'))

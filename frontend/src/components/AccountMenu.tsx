@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { User, Heart, Store, LogOut } from 'lucide-react'
+import { Heart, Store, LogOut } from 'lucide-react'
 import { useAuthStore } from '../stores/authStore'
 import { notify } from '../lib/toast'
 
@@ -9,9 +9,12 @@ export function AccountMenu() {
   const { t } = useTranslation()
   const navigate = useNavigate()
   const logout = useAuthStore((s) => s.logout)
+  const phoneNumber = useAuthStore((s) => s.phoneNumber)
   const [open, setOpen] = useState(false)
   const [confirmingLogout, setConfirmingLogout] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
+
+  const lastTwoDigits = phoneNumber?.slice(-2) ?? '··'
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -35,9 +38,9 @@ export function AccountMenu() {
         onClick={() => setOpen((v) => !v)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center justify-center w-9 h-9 rounded-full bg-[var(--color-accent)] text-white hover:opacity-90 transition-opacity"
+        className="flex items-center justify-center w-9 h-9 rounded-full bg-[var(--color-accent)] text-white text-xs font-medium hover:opacity-90 transition-opacity"
       >
-        <User size={16} strokeWidth={1.75} aria-hidden="true" />
+        {lastTwoDigits}
       </button>
 
       {open && (

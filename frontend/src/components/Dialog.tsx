@@ -6,9 +6,10 @@ interface DialogProps {
   onClose: () => void
   title: string
   children: React.ReactNode
+  wide?: boolean
 }
 
-export function Dialog({ open, onClose, title, children }: DialogProps) {
+export function Dialog({ open, onClose, title, children, wide }: DialogProps) {
   return (
     <AnimatePresence>
       {open && (
@@ -28,7 +29,7 @@ export function Dialog({ open, onClose, title, children }: DialogProps) {
             role="dialog"
             aria-modal="true"
             aria-label={title}
-            className="w-full max-w-[380px] bg-[var(--color-surface)] rounded-2xl p-7"
+            className={`w-full ${wide ? 'max-w-[520px]' : 'max-w-[380px]'} bg-[var(--color-surface)] rounded-2xl p-7 max-h-[85vh] overflow-y-auto`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between mb-5">

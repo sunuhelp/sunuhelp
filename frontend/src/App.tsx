@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage'
 import RegisterPage from './pages/RegisterPage'
 import DashboardPage from './pages/DashboardPage'
 import AddBusinessPage from './pages/AddBusinessPage'
+import EntityManagePage from './pages/EntityManagePage'
+import MyBusinessesPage from './pages/MyBusinessesPage'
 import { RequireAuth } from './components/RequireAuth'
 import './lib/i18n'
 
@@ -22,6 +24,8 @@ function App() {
           <Route path="/inscription" element={<RegisterPage />} />
           <Route path="/dashboard" element={<RequireAuth><DashboardPage /></RequireAuth>} />
           <Route path="/mon-etablissement" element={<RequireAuth><AddBusinessPage /></RequireAuth>} />
+          <Route path="/mes-etablissements" element={<RequireAuth><MyBusinessesPage /></RequireAuth>} />
+          <Route path="/mes-etablissements/:id" element={<RequireAuth><EntityManagePage /></RequireAuth>} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>
